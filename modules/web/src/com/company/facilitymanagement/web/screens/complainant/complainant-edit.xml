@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.facilitymanagement.web.screens.complainant">
+    <data>
+        <instance id="complainantDc"
+                  class="com.company.facilitymanagement.entity.ComplaintModel.Complainant"
+                  view="_local">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="complainantDc">
+            <column width="200px">
+                <textField id="firstNameField" property="firstName"/>
+                <textField id="emailIdField" property="emailId"/>
+                <textField id="addressLine1Field" property="addressLine1"/>
+                <textField id="cityField" property="city"/>
+
+                <textField id="zipCodeField" property="zipCode"/>
+
+            </column>
+            <column width="200px">
+                <textField id="lastNameField" property="lastName"/>
+                <textField id="phoneNumberField" property="phoneNumber"/>
+                <textField id="addressLine2Field" property="addressLine2"/>
+                <textField id="stateField" property="state"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true" align="BOTTOM_RIGHT">
+            <button  caption="msg://nextCaption" action="windowCommit"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

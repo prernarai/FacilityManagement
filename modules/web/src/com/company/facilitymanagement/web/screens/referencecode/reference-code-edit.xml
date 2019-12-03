@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.facilitymanagement.web.screens.referencecode">
+    <data>
+        <instance id="referenceCodeDc"
+                  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceCode"
+                  view="referenceCode-value-view">
+            <loader/>
+            <collection id="referenceValueListDc" property="referenceValueList"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="referenceCodeDc">
+            <column width="250px">
+                <textField id="codeField" property="code"/>
+                <textField id="descriptionField" property="description"/>
+            </column>
+        </form>
+        <groupBox id="referenceValueListBox"
+                  caption="msg://com.company.facilitymanagement.entity.ReferenceModel/ReferenceCode.referenceValueList">
+            <table id="referenceValueListTable" dataContainer="referenceValueListDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="edit" type="edit"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="label"/>
+                    <column id="value"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="referenceValueListTable.create"/>
+                    <button action="referenceValueListTable.edit"/>
+                    <button action="referenceValueListTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

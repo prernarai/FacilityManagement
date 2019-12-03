@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd">
+    <data>
+        <instance id="allegationDc"
+                  class="com.company.facilitymanagement.entity.ComplaintModel.Allegation"
+                  view="allegation-view">
+
+        </instance>
+        <collection id="yesNods"
+                              class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <loader>
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='yesNo']]>
+            </query>
+            </loader>
+        </collection>
+        <collection id="bodilyInjuriesDs"
+                    class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                    view="_minimal">
+            <loader>
+                <query>
+                    <![CDATA[select e from facilitymanagement_ReferenceValue e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="bodilyInjuriesDs"
+                    class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                    view="_minimal">
+            <loader>
+                <query>
+                    <![CDATA[select e from facilitymanagement_ReferenceValue e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <layout>
+        <fieldGroup id="fieldGroup" datasource="allegationDc">
+            <column width="250px">
+                <field property="type"/>
+                <field property="businessKey"/>
+                <field property="complaint"/>
+                <field property="shapeMarkOfInjury"/>
+                <field property="openHandOrClosedFist"/>
+                <field property="recurringEvent"/>
+                <field property="bodilyInjury" optionsDatasource="bodilyInjuriesDs"/>
+                <field property="qualifier1" optionsDatasource="qualifier1sDs"/>
+                <field property="qualifier2" optionsDatasource="qualifier2sDs"/>
+            </column>
+            <column width="250px">
+                <field property="relatedPerp.firstName"/>
+                <field property="relatedPerp.lastName"/>
+
+            </column>
+            <column width="250px">
+                <field property="relatedVictim.firstName"/>
+                <field property="relatedVictim.lastName"/>
+
+            </column>
+        </fieldGroup>
+    </layout>
+</fragment>

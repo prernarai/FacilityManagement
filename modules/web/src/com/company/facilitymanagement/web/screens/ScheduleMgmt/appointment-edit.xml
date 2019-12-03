@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.facilitymanagement.web.screens.ScheduleMgmt">
+    <data>
+        <instance id="appointmentDc"
+                  class="com.company.facilitymanagement.entity.ScheduleMgmt.Appointment"
+                  view="appointment-view">
+            <loader/>
+        </instance>
+        <collection id="whoIsWorkersDc" class="com.haulmont.cuba.security.entity.User" view="_minimal">
+            <loader id="whoIsWorkersLc">
+                <query>
+                    <![CDATA[select e from sec$User e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="appointmentDc">
+            <column width="250px">
+                <textField id="topicField" property="topic"/>
+                <lookupPickerField id="whoIsWorkerField" optionsContainer="whoIsWorkersDc" property="whoIsWorker">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+                <pickerField id="visitingToField" property="visitingTo">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </pickerField>
+                <dateField id="startDateTimeField" property="startDateTime"/>
+                <dateField id="endTimeField" property="endTime"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

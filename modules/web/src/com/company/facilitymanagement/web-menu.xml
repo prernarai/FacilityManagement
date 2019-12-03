@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-facilitymanagement" insertBefore="administration">
+        <item screen="facilitymanagement_Complaint.browse"/>
+        <item screen="facilityBrowserId"/>
+        <item screen="facilitymanagement_Client.browse" openType="DIALOG"/>
+        <item screen="facilitymanagement_Complainant.browse" openType="DIALOG"/>
+        <item screen="facilitymanagement_Allegation.browse" openType="DIALOG"/>
+        <item screen="facilitymanagement_Perpetrator.browse" openType="DIALOG"/>
+        <item screen="facilitymanagement_Appointment.browse"/>
+    </menu>
+    <item insertBefore="help" screen="facilitymanagement_ReferenceCode.browse"/>
+</menu-config>

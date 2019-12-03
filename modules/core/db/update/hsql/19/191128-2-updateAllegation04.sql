@@ -1,0 +1,2 @@
+alter table FACILITYMANAGEMENT_ALLEGATION add column RELATED_PERP_ID varchar(36) ;
+alter table FACILITYMANAGEMENT_ALLEGATION add column RELATED_VICTIM_ID varchar(36) ;

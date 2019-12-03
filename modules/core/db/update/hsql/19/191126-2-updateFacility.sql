@@ -1,0 +1,1 @@
+alter table FACILITYMANAGEMENT_FACILITY add column BUSINESS_KEY varchar(255) ;

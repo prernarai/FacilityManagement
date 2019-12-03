@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://caption"
+        messagesPack="com.company.facilitymanagement.web.screens.complainant">
+    <data>
+        <instance id="complainantDc" class="com.company.facilitymanagement.entity.ComplaintModel.Complainant" view="_base">
+            <loader />
+        </instance>
+    </data>
+    <actions>
+        <action id="handleCreateComplainant"/>
+    </actions>
+    <layout expand="editActions" spacing="true" responsive="true">
+        <form dataContainer="complainantDc" responsive="true">
+            <column>
+                <textField id="lastNameField" property="lastName"/>
+                <textField id="emailIdField" property="emailId"/>
+
+
+            </column>
+            <column>
+                <textField id="firstNameField" property="firstName" responsive="true"/>
+                <textField id="phoneNumberField" property="phoneNumber"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button caption="Next" action="handleCreateComplainant"/>
+        </hbox>
+    </layout>
+</window>

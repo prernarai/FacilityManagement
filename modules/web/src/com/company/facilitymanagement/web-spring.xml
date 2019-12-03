@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
+
+    <!-- Annotation-based beans -->
+    <context:component-scan base-package="com.company.facilitymanagement"/>
+    
+    <gui:screens base-packages="com.company.facilitymanagement.web"/>
+    <bean class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="remoteServices">
+            <map>
+                <entry key="facilitymanagement_ComplaintService"
+                       value="com.company.facilitymanagement.service.ComplaintService"/>
+                <entry key="facilitymanagement_AppointmentService"
+                       value="com.company.facilitymanagement.service.AppointmentService"/>
+                <entry key="facilitymanagement_TaskService" value="com.company.facilitymanagement.service.TaskService"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>

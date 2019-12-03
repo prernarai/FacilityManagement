@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps.ComplaintStep2"
+        messagesPack="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps"
+        caption="msg://caption">
+    <dialogMode height="AUTO"
+                width="100%"/>
+    <layout>
+
+        <grid id="grid" margin="true" align="TOP_CENTER" spacing="true" width="100%">
+            <columns count="2"/>
+            <rows>
+                <row>
+
+                    <lookupPickerField width="100%" id="facility" optionsDatasource="allFacilitiesDs"
+                                       caption="Please select the facility" inputPrompt="Please type facility name"
+                                       responsive="true" rowspan="1" colspan="1"/>
+
+
+                    <linkButton stylename="large" width="100%" id="facilityNumberLink" invoke="onFacilityLinkClicked"
+                                caption="Facility Number" icon="font-icon:HOME">Facility Number
+                    </linkButton>
+
+                </row>
+                <row>
+                    <vbox id="addressBox"
+                          spacing="true" width="100%">
+                        <textField width="100%" id="addressLine1" property="addressLine1" datasource="facilityDs"
+                                   caption="Address line1"></textField>
+                        <textField width="100%" id="addressLine2" property="addressLine2" datasource="facilityDs"
+                                   caption="Address Line2"></textField>
+
+
+                    </vbox>
+                    <vbox id="adressBoxCont"
+                          spacing="true" width="100%">
+                        <textField width="100%" id="city" property="city" datasource="facilityDs"
+                                   caption="city"></textField>
+                        <textField width="100%" id="zip" property="zip" datasource="facilityDs"
+                                   caption="Zip"></textField>
+                        <lookupField width="100%" id="state" property="state" datasource="facilityDs"
+                                     optionsDatasource="stateValuesDs" caption="State"></lookupField>
+                    </vbox>
+
+                </row>
+            </rows>
+        </grid>
+    </layout>
+</window>

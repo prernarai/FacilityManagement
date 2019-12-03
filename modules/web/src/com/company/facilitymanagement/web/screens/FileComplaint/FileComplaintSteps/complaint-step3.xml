@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps.ComplaintStep3"
+        messagesPack="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps"
+        caption="msg://WhatHappened">
+    <dialogMode height="AUTO"
+                width="100%"/>
+    <layout>
+        <grid id="grid" margin="true" align="TOP_CENTER" spacing="true" width="100%">
+            <columns count="1"/>
+            <rows>
+                <row>
+
+                    <richTextArea rowspan="1" contextHelpText="What did you see?" width="200%" id="whatHappened"
+                                  property="whatHappened" datasource="complaintDs"
+                                  caption="What Happened?"></richTextArea>
+
+                </row>
+                <row>
+                    <lookupField width="100%" id="didIncidentTakePlaceInFacility"
+                                 property="didIncidentTakePlaceInFacility" datasource="complaintDs"
+                                 optionsDatasource="yesNoDs"
+                                 caption="Did the incident occur in the facility?"></lookupField>
+                </row>
+                <row>
+                    <textArea inputPrompt="msg://otherDetails" width="100%" rowspan="1" id="otherDetailsOfLocation"
+                              property="otherDetailsOfLocation" datasource="complaintDs"
+                              caption="Are there any other details about location?"></textArea>
+                </row>
+                <row>
+                    <checkBoxGroup id="allegationTypes" width="200%" orientation="horizontal"
+                                   caption="What type of allegations are you noticing in narration?"
+                                   optionsDatasource="allegationTypes" rowspan="1" colspan="1"></checkBoxGroup>
+
+                </row>
+            </rows>
+        </grid>
+
+    </layout>
+</window>

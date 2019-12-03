@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps.ComplaintStep4"
+        messagesPack="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps"
+        caption="msg://caption">
+    <dialogMode height="AUTO"
+                width="100%"/>
+    <layout>
+        <grid id="grid" margin="true" align="TOP_CENTER" spacing="true" width="100%">
+            <columns count="3"/>
+            <rows>
+                <row>
+
+                    <lookupPickerField width="100%" datasource="victimDs" id="victimPickup" property="clientNumber"
+                                       optionsDatasource="allClientsDs" inputPrompt="Please type name"
+                                       caption="Does client exist?"/>
+                    <textField width="100%" id="firstName" datasource="victimDs" property="firstName"
+                               caption="What is their first name?"/>
+                    <textField width="100%" id="lastName" datasource="victimDs" property="lastName"
+                               caption="What is their last name?"/>
+                </row>
+                <row>
+                    <lookupField colspan="2" width="100%" datasource="victimDs" property="wereTheyInFacility"
+                                 optionsDatasource="yesNoDs" caption="Were they in facility at the time of incident?"/>
+                    <dateField width="100%" datasource="victimDs" property="dateOfBirth"
+                               caption="What is their date of birth?"/>
+                </row>
+
+            </rows>
+        </grid>
+    </layout>
+
+</window>

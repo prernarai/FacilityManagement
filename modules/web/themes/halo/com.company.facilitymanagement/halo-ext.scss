@@ -1,0 +1,327 @@
+/* Define your theme modifications inside next mixin */
+@mixin com_company_facilitymanagement-halo-ext {
+
+ .myGrid {
+      background-color: #166ed5;
+      border: 1px solid black;
+  }
+  .custom-box {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+
+    border-radius: 5px; /* 5px rounded corners */
+    border:1px solid lightgrey;
+    background-color:White;
+    text-align:center;
+    display:table-cell;
+    vertical-align: middle;
+    font-size:15px;
+    font-weight:bold;
+    margin: 4px;
+
+  }
+
+  .custom-box:hover {
+    border:1px solid $v-focus-color;
+  }
+  .custom-label{
+    font-size:12px;
+    /*font-weight:bold;*/
+    text-align: center;
+    padding:1px;
+    /*margin-bottom:5px;*/
+  }
+  div.container p
+  { text-align: center;
+  }
+
+  .label-as-header{
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:15px;
+    color:$v-focus-color;
+
+  }
+  .mainWindowBackground
+  {
+    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px; /* 5px rounded corners
+         background-color:lightgrey;*/
+
+  }
+  .optionButton
+  {
+    font-size:12px;
+    color:$v-focus-color;
+    border-radius: 5px;
+  }
+
+
+
+  /* .demo  {
+                          display: grid;
+
+                         grid-template-columns:70% 30%;
+                         grid-template-rows:330px;
+                         margin:5px;
+                         grid-gap:5px;
+                         padding:10px;
+            }
+             .grid-item1
+                             {
+
+                           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                                  transition: 0.3s;
+                                  border-radius: 5px; /* 5px rounded corners */
+    /*                              border:1px solid lightgrey;
+                                    background-color:White;
+                             }
+                           .grid-item2
+                             {
+
+                           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                                                           transition: 0.3s;
+                                                           border-radius: 5px; /* 5px rounded corners */
+                                                          /* border:1px solid lightgrey;
+                                                             background-color:White;
+                                                             padding:5px;
+                             }
+*/
+/*.complaintHeadingGrid{
+ display: grid;
+  grid-template-columns:33% 33% 30%;
+    margin:5px;
+    grid-gap:5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+   /* border:1px solid lightgrey;
+    background-color:White;
+}
+ .item{
+  padding:5px;
+ }
+.allegationGrid{
+ display: grid;
+  grid-template-columns:33% 33% 33%;
+    margin:5px;
+    grid-gap:5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+   /* border:1px solid lightgrey;
+    background-color:White;
+}
+
+ .gridItem{
+  padding:5px;
+ }
+ .eachGrid{
+  display: grid;
+   grid-template-columns:30% 30% 30%;
+    grid-template-rows:100px;
+     margin:5px;
+      padding:5px;
+ }*/
+
+ /*------Grid for complaint Edit Screen--------------------------------------------------------------*/
+/* this will be the main content for complaint detail screen*/
+  .layoutStyle
+   {
+      background: #FAFAFA;
+
+   }
+   /* this is the main content grid*/
+ .mainContentGrid {
+   display: grid;
+   grid-template-rows:16% 45% 45%;
+   grid-row-gap:10px;
+   background-color:white;
+ }
+  /* this is the summary content grid within main grid*/
+.complaintSummaryGrid
+  {
+     background-color:white;
+     display:grid;
+     grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+     grid-column-gap:5px;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+     transition: 0.3s;
+     border-radius: 5px;
+     border:1px solid lightgrey;
+
+  }
+  /* this is for Summary label*/
+  .complaintSummaryGridItem
+  {
+     text-transform: uppercase;
+     color:$v-focus-color;
+     font-family: 'Montserrat', sans-serif;
+     font-weight:bold;
+     font-size:1.1em;
+     grid-column-start:1;
+     grid-column-end:span 5;
+     grid-row:1;
+     grid-row-gap:5px;
+         /* this is to align label in center*/
+     text-align: center;
+  }
+  /*this is for facility link */
+  .complaintSummaryCenterItem{
+    padding:5px;
+    text-align: center;
+    grid-row:2;
+    }
+    /* all other items style*/
+    .item{
+      padding:5px;
+      grid-row:2;
+      }
+  /*end of summary grid-----------------------------*/
+  /* this is the complaint detail grid within main grid*/
+ .complaintDetailGrid
+  {
+
+   display: grid;
+   grid-template-columns: 4fr 1fr;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+   transition: 0.3s;
+   border-radius: 5px;
+   border:1px solid lightgrey;
+  }
+  .complaintDetailLabelGridItem
+    {
+       text-transform: uppercase;
+       color:$v-focus-color;
+       font-family: 'Montserrat', sans-serif;
+       font-weight:bold;
+       font-size:1.1em;
+       grid-column-start:1;
+       grid-column-end:span 2;
+       grid-row:1;
+       grid-row-gap:5px;
+           /* this is to align label in center*/
+       text-align: center;
+    }
+ .narrativeItem
+ {
+   padding:5px;
+   grid-row:2/span 4;
+  }
+  /* end of complaint detail grid-----------------------*/
+
+  /* this is the allegation detail grid within main grid*/
+ .allegationDetailGrid
+  {
+   display: grid;
+   grid-template-columns: 50% 25% 25%;
+   grid-auto-flow:column;
+   grid-gap:5px;
+
+  }
+ .allegationDetailLabelGridItem
+    {
+       text-transform: uppercase;
+       color:$v-focus-color;
+       font-family: 'Montserrat', sans-serif;
+       font-weight:bold;
+       font-size:1.1em;
+       grid-column-start:1;
+       grid-column-end:span 4;
+       grid-row:1;
+       grid-row-gap:5px;
+           /* this is to align label in center*/
+       text-align: center;
+
+    }
+ .allegationNarrativeItem
+ {
+ padding:5px;
+  grid-row:2;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              transition: 0.3s;
+              border-radius: 5px;
+              border:1px solid lightgrey;
+
+  }
+
+
+ .allegationNonNarrativeItem1
+ {
+    padding:5px;
+    grid-row:2;
+
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              transition: 0.3s;
+              border-radius: 5px;
+              border:1px solid lightgrey;
+
+ }
+  .allegationNonNarrativeItem2
+  {
+     padding:5px;
+     grid-row:2;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+              transition: 0.3s;
+              border-radius: 10px;
+              border:1px solid lightgrey;
+
+
+  }
+ /* end of allegation detail grid-----------------------*/
+/* start of user choices grid*/
+
+ .choicesGrid
+  {
+   display: grid;
+   grid-template-columns: 16% 16% 16% 16% 16% 17%;
+   grid-gap:5px;
+
+  }
+  .choiceItem
+  {
+  padding: 5px;
+  border:1px solid red;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                border-radius: 10px;
+                border:1px solid lightgrey;
+  }
+/*---task list and calendar*/
+.custom-box-for-datagrid {
+    display:grid;
+    grid-template-columns:45% 55%;
+   /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    /*border:1px solid lightgrey;
+    background-color:White;*/
+    grid-gap:20px;
+
+  }
+  .spacer{
+
+  }
+  .custom-box-for-datagrid .v-caption{
+    color:$v-focus-color;
+    text-align:center;
+  }
+  .item-1{
+  grid-row:1/ span 5;
+  padding:5px;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 5px; /* 5px rounded corners */
+        border:1px solid lightgrey;
+     }
+  .item-2{
+  padding:5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      border-radius: 5px; /* 5px rounded corners */
+      border:1px solid lightgrey;
+      grid-row:1/ span 5;
+  }
+
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.complaint.Allegationitemframe"
+        messagesPack="com.company.facilitymanagement.web.screens.complaint">
+    <dsContext>
+        <datasource id="allegationDs"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Allegation"
+                    view="allegation-view"/>
+        <collectionDatasource id="relationshipToVictimsDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='perpRelationToVictim']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="relationshipToFacilitiesDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='perpRelationToFacility']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="allegationTypes"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='allegationType']]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout  width="100%">
+        <cssLayout stylename="allegationDetailGrid" width="100%">
+        <label align="TOP_CENTER" value="Allegation Detail" stylename="allegationDetailLabelGridItem"
+               width="100%" ></label>
+            <vbox id="allegationNarrativeItem" stylename="allegationNarrativeItem" width="100%">
+                      <lookupField optionsDatasource="allegationTypes"  property="type" width="100%" caption="What is allegation type?"  datasource="allegationDs"/>
+                      <lookupField optionsDatasource="yesNoDs"  property="bodilyInjury" width="100%" caption="was their a bodily injury" datasource="allegationDs"/>
+
+                  <textField  property="shapeMarkOfInjury" caption="Details about mark or injury" width="100%"  datasource="allegationDs"/>
+
+                      <textField  property="openHandOrClosedFist" caption="Was it open or closed fist?" width="100%" datasource="allegationDs"/>
+                <textField  property="recurringEvent" caption="Is it a recurring event" width="100%" datasource="allegationDs"/>
+                <hbox spacing="true">
+                  <vbox width="100%">
+                      <label value="is there a qualifier" width="100%"></label>
+                      <lookupField optionsDatasource="qualifier1sDs"  property="qualifier1" width="100%" datasource="allegationDs"/>
+                  </vbox>
+                  <vbox width="100%">
+                      <label value="is there a qualifier" width="100%"></label>
+                      <lookupField optionsDatasource="qualifier2sDs" property="qualifier2" width="100%"  datasource="allegationDs"/>
+                  </vbox>
+
+              </hbox>
+
+          </vbox>
+           <!-- <vbox id="allegationNarrativeItem"  width="100%"  >
+                <cssLayout width="100%" stylename="allegationItem" css="grid-row: 1" >
+                    <vbox width="100%">
+                    <label value="What is allegation type?"  width="100%" ></label>
+                        <lookupField property="type" width="100%"  datasource="allegationDs"/>
+                    </vbox>
+                </cssLayout>
+                <cssLayout width="100%" stylename="allegationItem" css="grid-row:1">
+                    <vbox width="100%">
+                        <label value="was their a bodily injury" width="100%"></label>
+                        <lookupField  property="shapeMarkOfInjury" width="100%"  datasource="allegationDs"/>
+                    </vbox>
+                </cssLayout>
+              <cssLayout width="100%" stylename="allegationItem" css="grid-row:2">
+                    <vbox width="100%">
+                    <label value="Details about mark or injury"  width="100%"></label>
+                    <textField  property="shapeMarkOfInjury"  width="100%"  datasource="allegationDs"/>
+                    </vbox>
+                </cssLayout>
+                <cssLayout width="100%" stylename="allegationItem" css="grid-row: 2">
+                    <vbox width="100%">
+                        <label value="Was it open or closed fist?" width="100%" ></label>
+                        <textField  property="openHandOrClosedFist" width="100%" datasource="allegationDs"/>
+                    </vbox>
+                </cssLayout>
+                <hbox>
+                <cssLayout stylename="allegationItem" css="grid-row: 3">
+                    <vbox width="100%">
+                        <label value="Is it a recurring event" width="100%"  ></label>
+                        <textField  property="recurringEvent" width="100%" datasource="allegationDs"/>
+                    </vbox>
+                </cssLayout>
+
+                <cssLayout stylename="allegationItem" css="grid-row: 3">
+                    <vbox width="100%">
+                        <label value="is there a qualifier" width="100%"></label>
+                        <lookupField  property="qualifier1" width="100%" datasource="allegationDs"/>
+                    </vbox>
+                </cssLayout>
+                <cssLayout stylename="allegationItem" css="grid-row: 3">
+                    <vbox width="100%">
+                        <label value="is there a qualifier" width="100%"></label>
+                        <lookupField  property="qualifier2" width="100%"  datasource="allegationDs"/>
+                    </vbox>
+                </cssLayout>
+                </hbox
+
+
+            </vbox>-->
+            <vbox width="100%" stylename="allegationNonNarrativeItem1">
+                <textField property="relatedVictim.firstName" width="100%" caption="Victim first name"  datasource="allegationDs"/>
+                <textField property="relatedVictim.lastName" width="100%" caption="Victim last name"  datasource="allegationDs"/>
+                <textField property="relatedVictim.clientNumber" width="100%" caption="Client Number"  datasource="allegationDs"/>
+                <dateField property="relatedVictim.dateOfBirth" width="100%" caption="Victim date of birth"  datasource="allegationDs"/>
+            </vbox>
+            <vbox width="100%" stylename="allegationNonNarrativeItem2">
+                <textField property="relatedPerp.firstName" width="100%" caption="Perp first name"   datasource="allegationDs"/>
+                <textField property="relatedPerp.lastName" width="100%" caption="Perp last name"  datasource="allegationDs"/>
+                <lookupField property="relatedPerp.relationshipToFacility" width="100%" optionsDatasource="relationshipToFacilitiesDs"
+                             caption="Relation to facility"  datasource="allegationDs"/>
+                <lookupField property="relatedPerp.relationshipToVictim" width="100%" optionsDatasource="relationshipToVictimsDs"
+                             caption="Relation to victim"  datasource="allegationDs"/>
+            </vbox>
+        </cssLayout>
+    </layout>
+</window>

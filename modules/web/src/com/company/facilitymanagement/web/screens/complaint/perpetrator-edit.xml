@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.facilitymanagement.web.screens.complaint.PerpetratorEdit"
+        datasource="perpetratorDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.facilitymanagement.web.screens.complaint">
+    <dsContext>
+        <datasource id="perpetratorDs"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Perpetrator"
+                    view="perpetrator-view"/>
+        <collectionDatasource id="relationshipToVictimsDs"
+                              class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="relationshipToFacilitiesDs"
+                              class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions" spacing="true">
+        <fieldGroup id="fieldGroup" datasource="perpetratorDs">
+            <column width="250px">
+                <field property="firstName"/>
+                <field property="lastName"/>
+                <field property="relationshipToVictim" optionsDatasource="relationshipToVictimsDs"/>
+                <field property="relationshipToFacility" optionsDatasource="relationshipToFacilitiesDs"/>
+                <field property="allegation" />
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

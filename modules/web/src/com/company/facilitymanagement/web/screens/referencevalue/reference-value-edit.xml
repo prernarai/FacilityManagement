@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.facilitymanagement.web.screens.referencevalue">
+    <data>
+        <instance id="referenceValueDc"
+                  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                  view="_base">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="referenceValueDc">
+            <column width="250px">
+                <textField id="labelField" property="label"/>
+                <textField id="valueField" property="value"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

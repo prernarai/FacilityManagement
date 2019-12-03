@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.facilitymanagement.web.screens.complainant.ClientBrowse"
+        focusComponent="clientsTable"
+        lookupComponent="clientsTable"
+        messagesPack="com.company.facilitymanagement.web.screens">
+    <dsContext>
+        <groupDatasource id="clientsDs"
+                         class="com.company.facilitymanagement.entity.FacilityManagement.Client"
+                         view="_local">
+            <query>
+                <![CDATA[select e from facilitymanagement_Client e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="clientsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="clientsTable"
+                datasource="clientsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="clientsTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="DIALOG"/>
+                <action id="edit"
+                        openType="DIALOG"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="dateOfBirth"/>
+                <column id="businessKey"/>
+            </columns>
+            <rows datasource="clientsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="clientsTable.create"/>
+                <button id="editBtn" action="clientsTable.edit"/>
+                <button id="removeBtn" action="clientsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

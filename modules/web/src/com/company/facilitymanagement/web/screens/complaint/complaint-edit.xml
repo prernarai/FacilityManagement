@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.facilitymanagement.web.screens.complaint.ComplaintEdit"
+        datasource="complaintDs"
+
+        messagesPack="com.company.facilitymanagement.web.screens.complaint">
+    <dsContext>
+        <datasource id="complaintDs"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Complaint"
+                    view="complaint-summary-view"/>
+        <collectionDatasource id="yesNoDs"
+                              class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='yesNo']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="complaintSourceValuesDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='complaintSource']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="reportingPartiesDs"
+                              class="com.company.facilitymanagement.entity.ComplaintModel.Complainant"
+                              view="complainant-view">
+            <query>
+                <![CDATA[select e from facilitymanagement_Complainant e]]>
+            </query>
+        </collectionDatasource>
+       <!-- <datasource id="allegationDs" class="com.company.facilitymanagement.entity.ComplaintModel.Allegation"
+                    view="allegation-view"/>-->
+    </dsContext>
+    <dialogMode height="900px"
+                width="100%"
+                modal="false"
+                forceDialog="false"/>
+    <layout  width="100%" stylename="layoutStyle" margin="true"  spacing="true">
+        <cssLayout stylename="mainContentGrid">
+
+            <cssLayout stylename="complaintSummaryGrid">
+                <label align="TOP_CENTER" value="Summary" stylename="complaintSummaryGridItem" width="100%" ></label>
+                <vbox stylename="item" width="100%"><label value="Facility Number"></label>
+                    <linkButton  width="100%" stylename="borderless" id="facilityNumberLink" invoke="onFacilityLinkClicked"
+                                  caption="Facility Number" icon="font-icon:HOME">Facility Number</linkButton></vbox>
+                <vbox stylename="item" width="100%" ><textField css="padding:5px;" width="100%" property="businessKey" caption="Control number" datasource="complaintDs"/>
+                </vbox>
+                <vbox stylename="item" width="100%"><lookupField width="100%" property="sourceOfComplaint" caption="msg://whatWasTheSource"
+                                                    datasource="complaintDs" optionsDatasource="complaintSourceValuesDs">
+                </lookupField></vbox>
+                <vbox stylename="item" width="100%" ><lookupField width="100%"  caption="Who is reporting?"
+                                                                        property="reportingParty" datasource="complaintDs"
+                                                                  optionsDatasource="reportingPartiesDs"/>
+                </vbox>
+
+                <vbox stylename="item" width="100%" >  <dateField width="100%" caption="When is next visit?"
+                                                                          property="visitDueDate" datasource="complaintDs"/></vbox>
+            </cssLayout>
+            <cssLayout stylename="complaintDetailGrid">
+                <label align="TOP_CENTER" value="Incident Detail" stylename="complaintDetailLabelGridItem" width="100%" ></label>
+                <vbox width="100%" height="100%" stylename="narrativeItem"  >
+                    <richTextArea  width="100%" height="100%" align="MIDDLE_CENTER"  property="whatHappened" caption="What happened?"
+                                   datasource="complaintDs" captionAsHtml="true"/>
+                </vbox>
+                <vbox  width="100%" stylename="narrativeItem"  >
+                    <lookupField property="didIncidentTakePlaceInFacility" width="100%" height="100%"
+                                 optionsDatasource="yesNoDs" caption="msg://WasItInFacility" datasource="complaintDs" />
+                    <textArea width="100%" rowspan="2" caption="msg://anyOtherDetailsAboutIncidentLocation" property="otherDetailsOfLocation" datasource="complaintDs"/>
+                    <lookupField width="100%" property="isAbuseReportRequired" caption="msg://isAbuseReportRequired" datasource="complaintDs" optionsDatasource="yesNoDs"/>
+                    <lookupField width="100%" property="isAbuseReportFiled" caption="msg://isAbuseReported"  datasource="complaintDs" optionsDatasource="yesNoDs"/>
+                </vbox>
+            </cssLayout>
+                <linkButton stylename="borderless" invoke="onAllegationLinkClicked" align="BOTTOM_RIGHT" width="150px" caption="Add more allegation"></linkButton>
+                <frame id="allegationFrame" width="100%" screen="facilitymanagement_Allegationitemframe"></frame>
+            <frame id="windowActions" width="100%" align="BOTTOM_LEFT"
+                   screen="extendedEditWindowActions" />
+        </cssLayout>
+       <!--
+        <cssLayout id="mygrid" stylename="demo"  responsive="true"
+                   width="110%"
+                   height="100%">
+           <cssLayout stylename="grid-item1"  >
+                    <richTextArea  width="100%" height="95%" align="MIDDLE_CENTER"  property="whatHappened" caption="What happened?"
+                              datasource="complaintDs" captionAsHtml="true"/>
+           </cssLayout>
+            <cssLayout stylename="grid-item2" >
+                    <label>1</label>
+                    <lookupField property="didIncidentTakePlaceInFacility" width="100%"
+                           optionsDatasource="yesNoDs" caption="msg://WasItInFacility" datasource="complaintDs" />
+                    <textField width="100%" caption="msg://anyOtherDetailsAboutIncidentLocation" property="otherDetailsOfLocation" datasource="complaintDs"/>
+                    <dateField width="100%" property="visitDueDate" caption="msg://nextVisitDate" datasource="complaintDs" />
+                    <lookupField width="100%" property="sourceOfComplaint" caption="msg://whatWasTheSource" datasource="complaintDs" optionsDatasource="complaintSourceValuesDs"/>
+                    <lookupField width="100%" property="isAbuseReportRequired" caption="msg://isAbuseReportRequired" datasource="complaintDs" optionsDatasource="yesNoDs"/>
+                    <lookupField width="100%" property="isAbuseReportFiled" caption="msg://isAbuseReported"  datasource="complaintDs" optionsDatasource="yesNoDs"/>
+
+                </cssLayout>
+    </cssLayout>
+        <cssLayout width="100%" responsive="true"  height="100%">
+        <frame id="allegationFrame" width="100%" screen="facilitymanagement_Allegationitemframe"></frame>
+        </cssLayout>-->
+
+    </layout>
+</window>

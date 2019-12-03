@@ -1,0 +1,1 @@
+alter table FACILITYMANAGEMENT_APPOINTMENT drop column END_DATE_TIME__U58105 cascade ;

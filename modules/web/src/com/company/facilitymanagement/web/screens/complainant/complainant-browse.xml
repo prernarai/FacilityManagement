@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="complainantsTable"
+        messagesPack="com.company.facilitymanagement.web.screens.complainant">
+    <data readOnly="true">
+        <collection id="complainantsDc"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Complainant"
+                    view="_local">
+            <loader id="complainantsDl">
+                <query>
+                    <![CDATA[select e from facilitymanagement_Complainant e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="complainantsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="complainantsTable"
+                dataLoader="complainantsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="complainantsTable"
+                    width="100%"
+                    dataContainer="complainantsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="addressLine1"/>
+                <column id="addressLine2"/>
+                <column id="city"/>
+                <column id="state"/>
+                <column id="zipCode"/>
+                <column id="phoneNumber"/>
+                <column id="emailId"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="complainantsTable.create"/>
+                <button id="editBtn" action="complainantsTable.edit"/>
+                <button id="removeBtn" action="complainantsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

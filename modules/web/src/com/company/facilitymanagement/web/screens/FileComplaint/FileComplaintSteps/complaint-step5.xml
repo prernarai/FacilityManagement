@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps.ComplaintStep5"
+        messagesPack="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps"
+        caption="msg://caption">
+    <dialogMode height="AUTO"
+                width="100%"/>
+    <layout>
+
+        <grid id="grid" margin="true" align="TOP_CENTER" spacing="true" width="100%">
+            <columns count="3"/>
+            <rows>
+                <row>
+                    <textField rowspan="1" width="100%" caption="shape,location of injury" colspan="2"
+                               property="shapeMarkOfInjury" datasource="allegationDs"></textField>
+                    <lookupField width="100%" caption="Any Qualifier?" optionsDatasource="abuseQualifiersDs"  property="qualifier1" datasource="allegationDs"></lookupField>
+                </row>
+                <row>
+                    <textField width="100%" caption="Open hand or close fit" colspan="2"
+                               property="openHandOrClosedFist" rowspan="1"
+                               datasource="allegationDs"></textField>
+                    <lookupField width="100%" caption="Any Qualifier?"
+                                 property="qualifier2" optionsDatasource="abuseQualifiersDs" datasource="allegationDs"></lookupField>
+                </row>
+                <row>
+                    <textField width="100%" colspan="2" property="recurringEvent"
+                               caption="is this recurring event?" datasource="allegationDs"></textField>
+                    <multiUpload width="100%" caption="Any evidence?"></multiUpload>
+                </row>
+                <row>
+                    <lookupField width="100%" colspan="3" caption="Was there a bodily injury?"
+                                 optionsDatasource="yesNoDs" datasource="allegationDs"
+                                 property="bodilyInjury"></lookupField>
+                </row>
+            </rows>
+        </grid>
+    </layout>
+</window>

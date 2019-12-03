@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="FacilityManagement" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.company.facilitymanagement.entity.ReferenceModel.ReferenceCode</class>
+        <class>com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue</class>
+        <class>com.company.facilitymanagement.entity.ComplaintModel.Complainant</class>
+        <class>com.company.facilitymanagement.entity.ComplaintModel.Complaint</class>
+        <class>com.company.facilitymanagement.entity.ComplaintModel.ComplaintStatus</class>
+        <class>com.company.facilitymanagement.entity.FacilityManagement.Facility</class>
+        <class>com.company.facilitymanagement.entity.ComplaintModel.Allegation</class>
+        <class>com.company.facilitymanagement.entity.ReferenceModel.Tag</class>
+        <class>com.company.facilitymanagement.entity.ReferenceModel.ObjectAndTags</class>
+        <class>com.company.facilitymanagement.entity.ComplaintModel.Victim</class>
+        <class>com.company.facilitymanagement.entity.FacilityManagement.Client</class>
+        <class>com.company.facilitymanagement.entity.FacilityManagement.CientWithFacility</class>
+        <class>com.company.facilitymanagement.entity.ReferenceModel.EventTimeLine</class>
+        <class>com.company.facilitymanagement.entity.ComplaintModel.Perpetrator</class>
+        <class>com.company.facilitymanagement.entity.ScheduleMgmt.Appointment</class>
+        <class>com.company.facilitymanagement.entity.ReferenceModel.Task</class>
+        <class>com.company.facilitymanagement.entity.FacilityManagement.Visit</class>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        xmlns:wizard="http://schemas.diedavids.de/wizard/0.1/ui-component.xsd"
+        messagesPack="com.company.facilitymanagement.web.screens.FileComplaint"
+        class="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaint">
+    <dsContext>
+
+        <datasource id="complainantDs"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Complainant"
+                    view="complainant-view" >
+        </datasource>
+        <datasource id="complaintDs"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Complaint"
+                    view="complaint-detail-view">
+        </datasource>
+        <datasource id="facilityDs"
+                    class="com.company.facilitymanagement.entity.FacilityManagement.Facility"
+                    view="facility-view">
+        </datasource>
+        <datasource id="victimDs"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Victim"
+                    view="victim-view">
+        </datasource>
+        <collectionDatasource id="stateValuesDs" class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                                           view="_minimal">
+        <query>
+            <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='state']]>
+        </query>
+        </collectionDatasource>
+        <collectionDatasource id="complaintSourceValuesDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='complaintSource']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="yesNoDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='yesNo']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="facilityRelationdDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='facilityRelation']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="allegationTypes"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='allegationType']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="allFacilitiesDs"
+                              class="com.company.facilitymanagement.entity.FacilityManagement.Facility"
+                              view="facility-view">
+            <query>
+                <![CDATA[select e from facilitymanagement_Facility e ]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="allClientsDs" class="com.company.facilitymanagement.entity.FacilityManagement.Client"
+                              allowCommit="false" view="_local">
+            <query><![CDATA[select e from facilitymanagement_Client e]]></query>
+        </collectionDatasource>
+        <collectionDatasource id="relationshipToVictimsDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='perpRelationToVictim']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="relationshipToFacilitiesDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='perpRelationToFacility']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="abuseQualifiersDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='abuseQualifiers']]>
+            </query>
+        </collectionDatasource>
+        <datasource id="allegationDs" class="com.company.facilitymanagement.entity.ComplaintModel.Allegation"
+                    view="allegation-view"/>
+        <datasource id="perpetratorDs" class="com.company.facilitymanagement.entity.ComplaintModel.Perpetrator"
+                    view="perpetrator-view"/>
+
+    </dsContext>
+    <dialogMode height="AUTO"
+                width="900"/>
+    <layout expand="fileComplaintWizard">
+        <wizard:wizard id="fileComplaintWizard" width="100%">
+
+            <wizard:step id="step1"
+                         icon="font-icon:USER"
+                         caption="Who is reporting?"
+                         screen="complaint-step1" />
+            <wizard:step id="step2"
+                         icon="font-icon:HOME"
+                         caption="Which facility?"
+                         screen="complaint-step2" />
+            <wizard:step id="step3"
+                         icon="font-icon:QUESTION_CIRCLE_O"
+                         caption="What happened?"
+                         screen="complaint-step3" />
+            <wizard:step id="step4"
+                         icon="font-icon:USER_CIRCLE_O"
+                         caption="Who is victim?"
+                         screen="complaint-step4" />
+            <wizard:step id="step5"
+                         icon="font-icon:LIST_ALT"
+                         caption="Allegation details"
+                         screen="complaint-step5" />
+            <wizard:step id="step6"
+                         icon="font-icon:VCARD_O"
+                         caption="Alleged perpetrator?"
+                         screen="complaint-step6" />
+
+           <!-- <wizard:step id="step3"
+                         icon="font-icon:LIST_UL"
+                         caption="what happened..what, how and where?"
+                         screen="checkout-step-3-items" />
+
+            <wizard:step id="step4"
+                         icon="font-icon:CHECK"
+                         caption=""
+                         screen="Who was involved?" />-->
+        </wizard:wizard>
+    </layout>
+</window>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd">
+    <actions>
+        <action id="handleUserChoice" />
+    </actions>
+    <layout width="100%">
+        <!--<cssLayout width="100%" height="100%" >-->
+            <vbox  width="100%" height="100%" id="content" align="MIDDLE_CENTER"
+                  margin="true">
+
+            </vbox>
+        <!--</cssLayout>-->
+        <!--<vbox expand="content"
+              height="150px"
+              stylename="custom-box"
+              width="150px">
+            <vbox id="content" align="MIDDLE_CENTER"
+                  margin="true">
+
+            </vbox>
+        </vbox>-->
+    </layout>
+</fragment>

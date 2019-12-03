@@ -1,0 +1,1 @@
+alter table FACILITYMANAGEMENT_COMPLAINT drop column SOURCE_OF_COMPLAINT__U11655 cascade ;

@@ -1,0 +1,28 @@
+<Context>
+
+    <!-- Database connection -->
+
+    <!-- Switch off session serialization -->
+    <Manager pathname=""/>
+    <!--<Resource driverClassName="org.hsqldb.jdbc.JDBCDriver"
+          maxIdle="2"
+          maxTotal="20"
+          maxWaitMillis="5000"
+          name="jdbc/CubaDS"
+          password=""
+          type="javax.sql.DataSource"
+          url="jdbc:hsqldb:hsql://localhost:9010/facilitymanagement-1"
+          username="sa"
+          cubaDbHost="localhost:9011"
+          cubaDbName="facilitymanagement-1"/>-->
+    <Resource driverClassName="org.hsqldb.jdbc.JDBCDriver"
+              maxIdle="2"
+              maxTotal="20"
+              maxWaitMillis="5000"
+              name="jdbc/CubaDS"
+              password=""
+              type="javax.sql.DataSource"
+              url="jdbc:hsqldb:hsql://localhost:9011/facilitymanagement-2"
+              username="sa"/>
+
+</Context>

@@ -1,0 +1,1 @@
+alter table FACILITYMANAGEMENT_REFERENCE_VALUE drop column UUID__U22274 cascade ;

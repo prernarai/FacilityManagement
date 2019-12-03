@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps.ComplaintStep6"
+        messagesPack="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps"
+        caption="msg://caption">
+    <dialogMode height="AUTO"
+                width="100%"/>
+    <layout>
+        <grid id="grid" margin="true" align="TOP_CENTER" spacing="true" width="100%">
+        <columns count="2"/>
+        <rows>
+        <row>
+            <textField width="100%" property="firstName" datasource="perpetratorDs" caption="What is their first name?"/>
+            <textField width="100%" property="lastName" datasource="perpetratorDs" caption="What is their last name?" />
+        </row>
+            <row>
+            <lookupField width="100%" caption="What is relation to victim?"
+                         property="relationshipToVictim" datasource="perpetratorDs"
+                         optionsDatasource="relationshipToVictimsDs"/>
+            <lookupField width="100%" caption="What is relation to facility?"
+                         property="relationshipToFacility" datasource="perpetratorDs" optionsDatasource="relationshipToFacilitiesDs"/>
+        </row>
+        </rows>
+        </grid>
+    </layout>
+</window>

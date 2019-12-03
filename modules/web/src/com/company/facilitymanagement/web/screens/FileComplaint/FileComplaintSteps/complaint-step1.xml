@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps.ComplaintStep1"
+        messagesPack="com.company.facilitymanagement.web.screens.FileComplaint.FileComplaintSteps">
+    <dialogMode height="AUTO"
+                width="100%"/>
+    <layout>
+
+        <grid id="grid" margin="true" align="TOP_CENTER" spacing="true" width="100%">
+            <columns count="2"/>
+            <rows>
+                <row>
+
+                    <lookupField property="sourceOfComplaint" width="100%" datasource="complaintDs"
+                                 caption="What is complaint source?" optionsDatasource="complaintSourceValuesDs"/>
+                    <lookupField property="relationshipWithFacility" width="100%" datasource="complainantDs"
+                                 caption="What is relationship with facility?"
+                                 optionsDatasource="facilityRelationdDs"/>
+                </row>
+                <row>
+
+                    <lookupField width="100%" datasource="complainantDs"
+                                 property="doesComplaintantWantsToBeConfidential"
+                                 caption="Does reporter wants to be confidential?" optionsDatasource="yesNoDs"/>
+
+                    <textField width="100%" datasource="complainantDs" property="firstName"
+                               caption="What is First Name?"/>
+                </row>
+                <row>
+                    <textField width="100%" datasource="complainantDs" property="lastName"
+                               caption="What is Last name?"/>
+
+
+                    <textField width="100%" datasource="complainantDs" property="emailId"
+                               caption="What is Email Address?"/>
+
+
+                </row>
+                <row colspan="2">
+                    <maskedField mask="(###)###-####" valueMode="clear" width="100%" datasource="complainantDs"
+                                 property="phoneNumber" caption="What is Phone Number?"/>
+                </row>
+            </rows>
+        </grid>
+
+        <!-- <vbox stylename="well"
+              width="100%"
+               spacing="true">
+             <hbox stylename="v-panel-caption"
+                   width="100%">
+ <label align="MIDDLE_CENTER">  what is the source of complaint?</label>
+             </hbox>
+
+             <fieldGroup id="sourceOfComplaint1"
+                         width="100%" captionAlignment="TOP"
+                         datasource="complaintDs" >
+
+                 <field property="sourceOfComplaint"  optionsDatasource="complaintSourceValuesDs"/>
+             </fieldGroup>
+         </vbox>
+             <vbox stylename="well"
+                   width="100%"
+                   spacing="true">
+                 <hbox stylename="v-panel-caption"
+                    caption="Who is reporting"   width="100%">
+
+                 </hbox>
+
+                 <fieldGroup id="Whoisreporting"
+                             width="40%" captionAlignment="TOP"
+                             datasource="complainantDs"  >
+                     <column >
+                         <field property="doesComplaintantWantsToBeConfidential" optionsDatasource="yesNoDs"/>
+                         <field property="firstName"/>
+                         <field property="lastName"/>
+                         <field property="emailId"/>
+                         <field property="phoneNumber"/>
+                     </column>
+                 </fieldGroup>
+             </vbox>
+                 <vbox stylename="well"
+                       width="100%"
+                       spacing="true">
+                     <hbox stylename="v-panel-caption"
+                           width="100%">
+                         <label align="MIDDLE_CENTER">What is relation with facility?</label>
+                     </hbox>
+
+                     <fieldGroup id="Relationtofacility"
+                             width="100%" captionAlignment="TOP"
+                             datasource="complainantDs">
+
+                     <column>
+                         <field property="relationshipWithFacility" optionsDatasource="facilityRelationdDs"/>
+
+
+                     </column>
+                 </fieldGroup>
+                 </vbox>-->
+
+    </layout>
+</window>

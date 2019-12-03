@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="facilitymanagement_Complainant" name="complainant-view" extends="_local">
+        <property name="relationshipWithFacility" fetch="JOIN" view="_local"/>
+        <property name="doesComplaintantWantsToBeConfidential" view="_minimal">
+            <property name="value"/>
+        </property>
+    </view>
+    <view entity="facilitymanagement_ReferenceCode" name="referenceCode-value-view" extends="_local"
+          systemProperties="true">
+        <property name="referenceValueList" view="_minimal">
+            <property name="value"/>
+        </property>
+    </view>
+    <view entity="facilitymanagement_Facility" name="facility-view" extends="_local">
+        <property name="state" view="_minimal">
+            <property name="value"/>
+        </property>
+    </view>
+    <view entity="facilitymanagement_Complaint" name="complaint-detail-view" extends="_local">
+        <property name="isAbuseReportRequired" view="_minimal"/>
+        <property name="isAbuseReportFiled" view="_minimal"/>
+        <property name="sourceOfComplaint" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="didIncidentTakePlaceInFacility" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="allegations" fetch="JOIN" view="allegation-view"/>
+        <property name="facility" view="_minimal">
+            <property name="businessKey"/>
+        </property>
+        <property name="reportingParty" view="_minimal">
+            <property name="lastName"/>
+        </property>
+    </view>
+    <view entity="facilitymanagement_Victim" name="victim-view" extends="_local">
+        <property name="wereTheyInFacility" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="clientNumber" view="_minimal">
+            <property name="businessKey"/>
+        </property>
+    </view>
+    <view entity="facilitymanagement_Allegation" name="allegation-view" extends="_local">
+        <property name="type" view="_minimal"/>
+        <property name="complaint" view="complaint-view"/>
+        <property name="bodilyInjury" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="qualifier1" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="qualifier2" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="relatedVictim" fetch="JOIN" view="victim-view"/>
+        <property name="relatedPerp" fetch="JOIN" view="perpetrator-view"/>
+    </view>
+    <view entity="facilitymanagement_Perpetrator" name="perpetrator-view" extends="_local">
+        <property name="relationshipToVictim" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="relationshipToFacility" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="allegation" view="_minimal"/>
+    </view>
+    <view entity="facilitymanagement_Complaint" name="complaint-summary-view" extends="_local">
+
+        <property name="isAbuseReportRequired" view="_local"/>
+        <property name="isAbuseReportFiled" view="_local"/>
+        <property name="sourceOfComplaint" view="_local"/>
+        <property name="didIncidentTakePlaceInFacility" view="_local"/>
+        <property name="status" view="_local">
+            <property name="status"/>
+        </property>
+        <property name="allegations" fetch="JOIN" view="allegation-view"/>
+        <property name="facility" view="facility-view"/>
+        <property name="reportingParty" view="complainant-view"/>
+    </view>
+    <view entity="facilitymanagement_Complaint" name="complaint-view" extends="_local"/>
+    <view entity="facilitymanagement_Appointment" name="appointment-view" extends="_local">
+        <property name="whoIsWorker" view="_minimal"/>
+        <property name="visitingTo" view="facility-view"/>
+    </view>
+</views>

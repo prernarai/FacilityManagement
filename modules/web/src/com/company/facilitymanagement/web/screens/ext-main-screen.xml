@@ -1,0 +1,193 @@
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="mainMsg://application.caption">
+
+    <data>
+        <collection id="complaintsDc"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Complaint"
+                    view="complaint-detail-view">
+           <!-- <loader id="complaintsDl">
+              <query>
+                    <![CDATA[select e from facilitymanagement_Complaint e]]>
+                </query>
+            </loader>-->
+        </collection>
+        <collection id="appointmentsDc" class="com.company.facilitymanagement.entity.ScheduleMgmt.Appointment"
+                    view="appointment-view">
+           <loader/>
+        </collection>
+        <collection id="taskDatasDc" class="com.haulmont.addon.bproc.entity.TaskData" view="_local">
+            <loader />
+        </collection>
+    </data>
+    <actions>
+        <action id="launchBusinessProcess" />
+        <action id="refreshAppointment" invoke="refreshAppointment"/>
+    </actions>
+
+    <layout expand="horizontalWrap"
+            stylename="c-sidemenu-responsive"
+            responsive="true">
+        <hbox id="horizontalWrap"
+              expand="workArea"
+              stylename="c-sidemenu-layout"
+              width="100%">
+            <cssLayout id="sideMenuPanel"
+                       height="100%"
+                       stylename="c-sidemenu-panel">
+                <button id="mobileMenuButton"
+                        caption="mainMsg://app.menu"
+                        icon="icons/mobile-menu.png"
+                        stylename="primary c-sidemenu-toggle"/>
+                <hbox id="mobileButtonsBox"
+                      stylename="c-sidemenu-mobile-buttons">
+                    <newWindowButton id="mobileNewWindowButton"
+                                     description="mainMsg://newWindowBtnDescription"
+                                     icon="app/images/new-window.png"/>
+                    <userActionsButton id="mobileLogoutButton"/>
+                </hbox>
+                <hbox id="appTitleBox"
+                      spacing="true"
+                      stylename="c-sidemenu-title"
+                      width="100%">
+                    <label id="appTitleLabel"
+                           value="mainMsg://application.logoLabel"/>
+                </hbox>
+                <cssLayout id="sideMenuWrap"
+                           stylename="c-sidemenu-wrap">
+                    <image id="logoImage"
+                           stylename="c-app-icon"
+                           align="MIDDLE_CENTER"
+                           scaleMode="SCALE_DOWN"/>
+                    <userIndicator id="userIndicator"
+                                   width="100%"/>
+                    <hbox id="mainButtonsBox"
+                          stylename="c-main-buttons">
+                        <newWindowButton id="newWindowButton"
+                                         description="mainMsg://newWindowBtnDescription"
+                                         icon="app/images/new-window.png"/>
+                        <userActionsButton id="logoutButton"/>
+                    </hbox>
+                    <timeZoneIndicator id="timeZoneIndicator"
+                                       width="100%"/>
+                    <sideMenu id="sideMenu"
+                              sidePanel="sideMenuPanel"
+                              sidePanelToggleButton="mobileMenuButton"/>
+                    <ftsField id="ftsField"
+                              width="100%"/>
+                </cssLayout>
+            </cssLayout>
+            <workArea id="workArea"
+                      height="100%">
+
+                <initialLayout margin="true"
+                               spacing="true" expand="searchResult">
+
+                    <label id="label" stylename="label-as-header" align="TOP_CENTER" value="Welcome, what would you like to do?"/>
+
+                    <cssLayout stylename="choicesGrid">
+                        <cssLayout  stylename="choiceItem" width="100%">
+                        <fragment width="100%" height="100%" screen="facilitymanagement_ChoiceCardFragment" id="choice1"></fragment>
+                        </cssLayout>
+                    <cssLayout  stylename="choiceItem" width="100%">
+                        <fragment width="100%" height="100%"
+                                  screen="facilitymanagement_ChoiceCardFragment" id="choice2"></fragment>
+                    </cssLayout>
+                    <cssLayout  stylename="choiceItem" width="100%">
+                        <fragment width="100%" height="100%"
+                                  screen="facilitymanagement_ChoiceCardFragment" id="choice3"></fragment>
+                    </cssLayout>
+                    <cssLayout  stylename="choiceItem" width="100%">
+                        <fragment width="100%" height="100%"
+                                  screen="facilitymanagement_ChoiceCardFragment" id="choice4"></fragment>
+                    </cssLayout>
+                    <cssLayout  stylename="choiceItem" width="100%">
+                        <fragment width="100%" height="100%"
+                                  screen="facilitymanagement_ChoiceCardFragment" id="choice5"></fragment>
+                    </cssLayout>
+                    <cssLayout  stylename="choiceItem" width="100%">
+                        <fragment screen="facilitymanagement_ChoiceCardFragment"
+                                  width="100%" height="100%" id="choice6"></fragment>
+                    </cssLayout>
+                    </cssLayout>
+                    <label stylename="spacer" width="100%" height="10px"></label>
+                    <label id="label2" stylename="label-as-header" align="TOP_CENTER" value="My tasks and appointments"/>
+                    <cssLayout stylename="custom-box-for-datagrid" id="searchResult" height="100%" width="100%">
+
+                        <cssLayout width="100%" height="95%" stylename="item-1">
+                        <dataGrid id="dataGrid"   width="98%" height="45%"
+                                 dataContainer="taskDatasDc">
+                            <actions>
+                                <action id="createAppointment" caption="create appointment" icon="CALENDAR" invoke="createAppointment"/>
+                            </actions>
+                            <columns>
+                                <column property="name"/>
+                                <column property="description"/>
+                                <column property="dueDate"/>
+
+                            </columns>
+                            <buttonsPanel>
+                                <button id="creatAppointmentbtn" action="dataGrid.createAppointment"/>
+                            </buttonsPanel>
+                        </dataGrid>
+                            <dataGrid id="dataGrid2"  width="98%" height="50%" css="margin-top:10px"
+                                      dataContainer="complaintsDc">
+                            <actions>
+                                <action id="edit" type="edit"/>
+                            </actions>
+                            <columns>
+                                <column property="businessKey" caption="control number"/>
+                                <column property="facility"/>
+                                <column property="sourceOfComplaint"/>
+                                <column property="visitDueDate" caption="next visit due date"/>
+
+                            </columns>
+                                <buttonsPanel>
+
+                                    <button id="editBtn" action="dataGrid2.edit"/>
+
+                                </buttonsPanel>
+                            </dataGrid>
+                        </cssLayout>
+                    <cssLayout width="95%" height="95%" stylename="item-2">
+                        <buttonsPanel>
+                            <button id="refresh" action="refreshAppointment" icon="REFRESH"></button>
+                        </buttonsPanel>
+
+                        <calendar id="calendar" width="99%" captionProperty="topic" dataContainer="appointmentsDc"
+                                  descriptionProperty="topic" navigationButtonsVisible="true" firstVisibleDayOfWeek="3"
+                                  startDateProperty="startDateTime" endDateProperty="endTime"
+                                  height="94%" firstVisibleHourOfDay="8" lastVisibleHourOfDay="18"
+                                  lastVisibleDayOfWeek="7">
+
+                            <dayNames>
+                                <day dayOfWeek="MONDAY" value="Mon"/>
+                                <day dayOfWeek="TUESDAY" value="Tue"/>
+                                <day dayOfWeek="WEDNESDAY" value="Wed"/>
+                                <day dayOfWeek="THURSDAY" value="Thur"/>
+                                <day dayOfWeek="FRIDAY" value="Fri"/>
+                                <day dayOfWeek="SATURDAY" value="Sat"/>
+                                <day dayOfWeek="SUNDAY" value="Sun"/>
+                            </dayNames>
+                            <monthNames>
+                                <month month="JANUARY" value="Jan"/>
+                                <month month="FEBRUARY" value="Feb"/>
+                                <month month="MARCH" value="Mar"/>
+                                <month month="APRIL" value="Apr"/>
+                                <month month="MAY" value="May"/>
+                                <month month="JUNE" value="Jun"/>
+                                <month month="JULY" value="July"/>
+                                <month month="AUGUST" value="Aug"/>
+                                <month month="SEPTEMBER" value="Sep"/>
+                                <month month="OCTOBER" value="Oct"/>
+                                <month month="NOVEMBER" value="Nov"/>
+                                <month month="DECEMBER" value="Dec"/>
+                            </monthNames>
+                        </calendar>
+                    </cssLayout>
+
+                    </cssLayout>
+                </initialLayout>
+            </workArea>
+        </hbox>
+    </layout>
+</window>

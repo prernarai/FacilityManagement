@@ -1,0 +1,2 @@
+alter table FACILITYMANAGEMENT_APPOINTMENT alter column END_DATE_TIME rename to END_DATE_TIME__U90467 ^
+alter table FACILITYMANAGEMENT_APPOINTMENT add column END_TIME timestamp ;

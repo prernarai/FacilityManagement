@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="Allegations"
+        class="com.company.facilitymanagement.web.screens.complaint.AllegationBrowse"
+        focusComponent="allegationsTable"
+        lookupComponent="allegationsTable"
+        messagesPack="com.company.facilitymanagement.web.screens.complaint">
+    <dsContext>
+        <groupDatasource id="allegationsDs"
+                         class="com.company.facilitymanagement.entity.ComplaintModel.Allegation"
+                         view="allegation-view">
+            <query>
+                <![CDATA[select e from facilitymanagement_Allegation e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="allegationsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="allegationsTable"
+                datasource="allegationsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="allegationsTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="type"/>
+                <column id="businessKey"/>
+                <column id="complaint"/>
+                <column id="shapeMarkOfInjury"/>
+                <column id="openHandOrClosedFist"/>
+                <column id="recurringEvent"/>
+                <column id="bodilyInjury" optionsDatasource=""/>
+                <column id="qualifier1"/>
+                <column id="qualifier2"/>
+            </columns>
+            <rows datasource="allegationsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="allegationsTable.create"/>
+                <button id="editBtn" action="allegationsTable.edit"/>
+                <button id="removeBtn" action="allegationsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

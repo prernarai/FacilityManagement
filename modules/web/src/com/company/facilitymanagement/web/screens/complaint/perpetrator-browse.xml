@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.facilitymanagement.web.screens.complaint.PerpetratorBrowse"
+        focusComponent="perpetratorsTable"
+        lookupComponent="perpetratorsTable"
+        messagesPack="com.company.facilitymanagement.web.screens.complaint">
+    <dsContext>
+        <groupDatasource id="perpetratorsDs"
+                         class="com.company.facilitymanagement.entity.ComplaintModel.Perpetrator"
+                         view="perpetrator-view">
+            <query>
+                <![CDATA[select e from facilitymanagement_Perpetrator e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="perpetratorsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="perpetratorsTable"
+                datasource="perpetratorsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="perpetratorsTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="relationshipToVictim"/>
+                <column id="relationshipToFacility"/>
+            </columns>
+            <rows datasource="perpetratorsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="perpetratorsTable.create"/>
+                <button id="editBtn" action="perpetratorsTable.edit"/>
+                <button id="removeBtn" action="perpetratorsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.facilitymanagement.web.screens.facility.FacilityBrowse"
+        focusComponent="facilitiesTable"
+        lookupComponent="facilitiesTable"
+        messagesPack="com.company.facilitymanagement.web.screens.facility">
+    <dsContext>
+        <groupDatasource id="facilitiesDs"
+                         class="com.company.facilitymanagement.entity.FacilityManagement.Facility"
+                         view="facility-view">
+            <query>
+                <![CDATA[select e from facilitymanagement_Facility e]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="facilitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="facilitiesTable"
+                datasource="facilitiesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="facilitiesTable"
+                    width="100%">
+            <actions>
+                <action id="create"
+                        openType="NEW_TAB"/>
+                <action id="edit"
+                        openType="NEW_TAB"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="businessKey" caption="Facility Number"/>
+                <column id="name"/>
+                <column id="addressLine1"/>
+                <column id="addressLine2"/>
+                <column id="city"/>
+                <column id="state"/>
+                <column id="zip"/>
+            </columns>
+            <rows datasource="facilitiesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="facilitiesTable.create"/>
+                <button id="editBtn" action="facilitiesTable.edit"/>
+                <button id="removeBtn" action="facilitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

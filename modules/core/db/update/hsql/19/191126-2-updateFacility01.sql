@@ -1,0 +1,2 @@
+alter table FACILITYMANAGEMENT_FACILITY add column LICENSE_DATE date ;
+alter table FACILITYMANAGEMENT_FACILITY add column LICENSE_STATUS_ID integer ;

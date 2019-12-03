@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+
+    <screen id="facilitymanagement_FileComplaint"
+            template="com/company/facilitymanagement/web/screens/FileComplaint/file-complaint.xml"/>
+    <screen id="facilitymanagement_ComplaintStep1"
+            template="com/company/facilitymanagement/web/screens/FileComplaint/FileComplaintSteps/complaint-step1.xml"/>
+    <screen id="facilitymanagement_ComplaintStep2"
+            template="com/company/facilitymanagement/web/screens/FileComplaint/FileComplaintSteps/complaint-step2.xml"/>
+    <screen id="facilityBrowserId" template="com/company/facilitymanagement/web/screens/facility/facility-browse.xml"/>
+    <screen id="facilitymanagement_Facility.browse" template="com/company/facilitymanagement/web/screens/facility/facility-browse.xml"/>
+    <screen id="facilitymanagement_ComplaintStep3"
+            template="com/company/facilitymanagement/web/screens/FileComplaint/FileComplaintSteps/complaint-step3.xml"/>
+    <screen id="facilitymanagement_ComplaintStep4"
+            template="com/company/facilitymanagement/web/screens/FileComplaint/FileComplaintSteps/complaint-step4.xml"/>
+    <screen id="facilitymanagement_ComplaintStep5"
+            template="com/company/facilitymanagement/web/screens/FileComplaint/FileComplaintSteps/complaint-step5.xml"/>
+    <screen id="facilitymanagement_ComplaintStep6"
+            template="com/company/facilitymanagement/web/screens/FileComplaint/FileComplaintSteps/complaint-step6.xml"/>
+    <screen id="facilitymanagement_Allegation.browse"
+            template="com/company/facilitymanagement/web/screens/complaint/allegation-browse.xml"/>
+    <screen id="facilitymanagement_Allegation.edit"
+            template="com/company/facilitymanagement/web/screens/complaint/allegation-edit.xml"/>
+    <screen id="facilitymanagement_Perpetrator.browse"
+            template="com/company/facilitymanagement/web/screens/complaint/perpetrator-browse.xml"/>
+    <screen id="facilitymanagement_Perpetrator.edit"
+            template="com/company/facilitymanagement/web/screens/complaint/perpetrator-edit.xml"/>
+    <screen id="facilitymanagement_Client.browse"
+            template="/com/company/facilitymanagement/web/screens/complainant/client-browse.xml"/>
+    <screen id="facilitymanagement_Client.edit"
+            template="com/company/facilitymanagement/web/screens/complainant/client-edit.xml"/>
+    <screen id="facilitymanagement_Complaint.edit"
+            template="com/company/facilitymanagement/web/screens/complaint/complaint-edit.xml"/>
+    <screen id="facilitymanagement_Allegationitemframe"
+            template="com/company/facilitymanagement/web/screens/complaint/AllegationItemFrame.xml"/>
+
+</screen-config>
