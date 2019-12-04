@@ -13,6 +13,10 @@ import com.company.facilitymanagement.web.PresenterEvents.UserChoiceSelectedEven
 import com.company.facilitymanagement.web.screens.ChoiceScreens.ChoiceCardFragment;
 import com.company.facilitymanagement.web.screens.FileComplaint.FileComplaint;
 import com.company.facilitymanagement.web.screens.ScheduleMgmt.AppointmentEdit;
+import com.company.facilitymanagement.web.screens.complainant.ClientBrowse;
+import com.company.facilitymanagement.web.screens.complaint.ComplaintBrowse;
+import com.company.facilitymanagement.web.screens.facility.FacilityBrowse;
+import com.company.facilitymanagement.web.screens.facility.VisitBrowse;
 import com.haulmont.addon.bproc.entity.TaskData;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.gui.ScreenBuilders;
@@ -81,10 +85,10 @@ public class ExtMainScreen extends MainScreen {
                "MyComplaints","LIST");
        this.choice4.addChoiceDescription("Manage clients",
                "ManageClients","GROUP");
-       this.choice5.addChoiceDescription("Manage training schedule",
-               "TrainingSchedule","CALENDAR");
-       this.choice6.addChoiceDescription("My Incident Reports",
-               "ManageReports","SNAPCHAT_GHOST");
+       this.choice5.addChoiceDescription("Manage visits",
+               "ManageVisits","CALENDAR");
+       this.choice6.addChoiceDescription("Manage training schedule",
+               "TrainingSchedule","SNAPCHAT_GHOST");
         LoadVisits();
         LoadAppointments();
         LoadTasks();
@@ -113,11 +117,36 @@ public class ExtMainScreen extends MainScreen {
     public void handleUserChoiceSelectedEvent(UserChoiceSelectedEvent event)
     {
         if(event.getChoiceDescription()=="StartComplaintProcess")
-            this.startInterview();
+            this.startComplaint();
+        if(event.getChoiceDescription()=="MangeFacility")
+            this.startFacility();
+        if(event.getChoiceDescription()=="MyComplaints")
+            this.searchComplaint();
+        if(event.getChoiceDescription()=="ManageClients")
+            this.startClients();
+        if(event.getChoiceDescription()=="ManageVisits")
+            this.startVisit();
     }
 
-    private void startInterview() {
+    private void startClients() {
+        ClientBrowse screen = screens.create(ClientBrowse.class, OpenMode.DIALOG);
+        screens.show(screen);
+    }
+
+    private void startComplaint() {
         FileComplaint screen = screens.create(FileComplaint.class, OpenMode.DIALOG);
+        screens.show(screen);
+    }
+    private void searchComplaint() {
+        ComplaintBrowse screen = screens.create(ComplaintBrowse.class, OpenMode.DIALOG);
+        screens.show(screen);
+    }
+    private void startFacility() {
+        FacilityBrowse screen = screens.create(FacilityBrowse.class, OpenMode.DIALOG);
+        screens.show(screen);
+    }
+    private void startVisit() {
+        VisitBrowse screen = screens.create(VisitBrowse.class, OpenMode.DIALOG);
         screens.show(screen);
     }
     @Inject

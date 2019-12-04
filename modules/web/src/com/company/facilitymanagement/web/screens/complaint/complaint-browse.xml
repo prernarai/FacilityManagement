@@ -14,8 +14,8 @@
             </loader>
         </collection>
     </data>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="800"
+                width="1000"/>
     <layout expand="complaintsTable"
             spacing="true">
         <filter id="filter"
@@ -32,15 +32,14 @@
                 <action id="remove" type="remove" />
             </actions>
             <columns>
+                <column id="businessKey" caption="control number"/>
+                <column id="facility"/>
                 <column id="isAbuseReportRequired"/>
                 <column id="isAbuseReportFiled"/>
                 <column id="visitDueDate"/>
-
                 <column id="phoneNumber"/>
                 <column id="sourceOfComplaint"/>
-                <column id="businessKey" caption="control number"/>
 
-                <column id="facility"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

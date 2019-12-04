@@ -33,10 +33,11 @@
                 <action id="remove"/>
             </actions>
             <columns>
+                <column id="businessKey"/>
                 <column id="firstName"/>
                 <column id="lastName"/>
                 <column id="dateOfBirth"/>
-                <column id="businessKey"/>
+
             </columns>
             <rows datasource="clientsDs"/>
             <rowsCount/>

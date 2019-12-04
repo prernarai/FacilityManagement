@@ -10,6 +10,7 @@
         <item screen="facilitymanagement_Appointment.browse"/>
         <item screen="facilitymanagement_Task.browse"/>
         <item screen="facilitymanagement_CientWithFacility.browse"/>
+        <item screen="facilitymanagement_Visit.browse"/>
     </menu>
     <item insertBefore="help" screen="facilitymanagement_ReferenceCode.browse"/>
 </menu-config>

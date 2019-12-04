@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
-        caption="msg://browseCaption"
+        caption="Facility Search"
         class="com.company.facilitymanagement.web.screens.facility.FacilityBrowse"
         focusComponent="facilitiesTable"
         lookupComponent="facilitiesTable"
@@ -14,8 +14,8 @@
             </query>
         </groupDatasource>
     </dsContext>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="800"
+                width="1000"/>
     <layout expand="facilitiesTable"
             spacing="true">
         <filter id="filter"
