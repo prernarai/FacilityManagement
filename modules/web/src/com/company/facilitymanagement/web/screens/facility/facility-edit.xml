@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://editorCaption"
-        focusComponent="form"
+
         messagesPack="com.company.facilitymanagement.web.screens.facility">
     <data>
         <instance id="facilityDc"
@@ -9,29 +9,146 @@
                   view="facility-view">
             <loader/>
         </instance>
+        <collection id="visitsDc" class="com.company.facilitymanagement.entity.FacilityManagement.Visit" view="visit-view">
+        <loader id="visitsDl">
+            <query><![CDATA[select e from facilitymanagement_Visit e where e.facility = :facility]]></query>
+        </loader>
+        </collection>
+        <collection id="clientsDc" class="com.company.facilitymanagement.entity.FacilityManagement.CientWithFacility" view="cientWithFacility-view">
+            <loader id="clientsDl">
+                <query><![CDATA[select e from facilitymanagement_CientWithFacility e where e.facility = :facility]]></query>
+            </loader>
+        </collection>
+        <collection id="licenseStatusDc" class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue" view="_local">
+            <loader id="licenseStatusDl">
+                <query>
+                    <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='licenseStatus']]>
+                </query>
+            </loader>
+        </collection>
+
+
+
     </data>
-    <dialogMode height="600"
-                width="800"/>
-    <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="facilityDc">
-            <column width="250px">
-                <textField id="nameField" property="name"/>
-                <textField id="addressLine1Field" property="addressLine1"/>
-                <textField id="addressLine2Field" property="addressLine2"/>
-                <textField id="cityField" property="city"/>
-                <pickerField id="stateField" property="state">
-                    <actions>
-                        <action id="lookup" type="picker_lookup"/>
-                        <action id="clear" type="picker_clear"/>
-                    </actions>
-                </pickerField>
-                <textField id="zipField" property="zip"/>
-                <textField id="businessKeyField" caption="Facility Number" property="businessKey"/>
-            </column>
-        </form>
-        <hbox id="editActions" spacing="true">
-            <button action="windowCommitAndClose"/>
-            <button action="windowClose"/>
-        </hbox>
+    <dialogMode height="900px"
+                width="1200px"
+                forceDialog="false"/>
+    <layout  stylename="layoutStyle" height="100%" margin="true"  spacing="true">
+        <cssLayout height="100%" id ="contentGrid" stylename="ContentGridForFacility">
+            <cssLayout height="100%" width="98%" stylename="header">
+                <cssLayout height="95%"  stylename="header-item">
+                    <vbox   height="100%"  align="MIDDLE_CENTER">
+                        <label align="TOP_CENTER" icon="HOME"></label>
+                        <label height="100%"  align="MIDDLE_CENTER" property="businessKey" dataContainer="facilityDc"></label>
+                        <label height="100%" align="MIDDLE_CENTER" property="licenseStatus"
+                               value="Status" dataContainer="facilityDc"></label>
+                        <label height="100%"  align="MIDDLE_CENTER" property="licenseDate"
+                               dataContainer="facilityDc"></label>
+                    </vbox>
+                </cssLayout>
+
+
+                <cssLayout height="95%" stylename="header-item">
+
+                    <vbox   height="100%"  align="MIDDLE_CENTER">
+                        <label align="TOP_CENTER" icon="BULLHORN" value="Complaints"></label>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="2 open"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="5 closed"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="7 total"></linkButton>
+                    </vbox>
+                </cssLayout>
+                <cssLayout height="95%" stylename="header-item">
+                    <vbox   height="100%"  align="MIDDLE_CENTER">
+                        <label align="TOP_CENTER" icon="LIST" value="Incident Reports"></label>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="1 open"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="5 closed"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="6 total"></linkButton>
+                    </vbox>
+                </cssLayout>
+                <cssLayout height="95%" stylename="header-item">
+                    <vbox   height="100%"  align="MIDDLE_CENTER">
+                        <label align="TOP_CENTER" icon="TIMES" value="Deficiencies"></label>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="1 open"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="5 closed"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="6 total "></linkButton>
+                    </vbox>
+                </cssLayout>
+                <cssLayout height="95%" stylename="header-item">
+                    <vbox   height="100%"  align="MIDDLE_CENTER">
+                        <label align="TOP_CENTER" icon="CALENDAR" value="Annual Visits"></label>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="1 pending"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="3 done"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="4 total "></linkButton>
+                    </vbox>
+                </cssLayout>
+                <cssLayout height="95%" stylename="header-item">
+                    <vbox   height="100%"  align="MIDDLE_CENTER">
+                        <label align="TOP_CENTER" icon="CALENDAR" value="Other Visits"></label>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="2 pending"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="3 done"></linkButton>
+                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="5 total "></linkButton>
+                    </vbox>
+                </cssLayout>
+            </cssLayout>
+
+            <cssLayout height="100%" width="100%" stylename="content">
+                <label align="TOP_CENTER" value="Summary" stylename="headerSummaryGridItem" width="100%" ></label>
+                <cssLayout height="95%"  width="100%" >
+                    <vbox  css="padding:5px;" height="97%" width="97%">
+                        <textField width="100%" id="nameField" caption="Facility name" property="name" dataContainer="facilityDc"/>
+                        <lookupField  optionsContainer="licenseStatusDc" width="100%" id="licenseStatus" caption="License Status" dataContainer="facilityDc"
+                                   property="licenseStatus"/>
+                        <dateField  width="100%" id="licenseDate" caption="Status Date" property="licenseDate" dataContainer="facilityDc"/>
+
+
+                    </vbox>
+                </cssLayout>
+                <cssLayout height="95%"   width="100%" >
+                    <vbox  css="padding:5px;" height="98%" width="97%">
+                        <textField  width="100%" id="" caption="address line 2"
+                                    property="addressLine1" dataContainer="facilityDc"/>
+                        <textField  width="100%" id="cityField" caption="city" property="city" dataContainer="facilityDc"/>
+                        <textField  width="100%" id="zipField" property="zip" caption="zip" dataContainer="facilityDc"/>
+
+                    </vbox>
+                </cssLayout>
+            </cssLayout>
+            <cssLayout width="100%" height="98%" stylename="visitInfo">
+                <label align="TOP_CENTER" value="Visits" stylename="SummaryGridItem" width="100%" ></label>
+              <dataGrid id="visitsDcTable"   css="padding:5px;background-color:white"  height="98%" width="100%"
+                        dataContainer="visitsDc">
+
+                    <columns>
+                        <column property="businessKey" caption="Visit No."/>
+                        <column property="visitDate" caption="Visit Date"/>
+                        <column property="status"/>
+                        <column property="startTime" caption="Start Time"/>
+                        <column property="endTime" caption="End Time"/>
+                    </columns>
+                </dataGrid>
+            </cssLayout>
+            <cssLayout width="100%" height="98%"   stylename="clientInfo">
+                <label align="TOP_CENTER" value="Clients" stylename="SummaryGridItem" width="100%" ></label>
+                <dataGrid id="clientsDcTable" css="padding:5px; background-color:white"  height="98%" width="100%" dataContainer="clientsDc">
+                    <columns>
+                        <column property="client.businessKey" caption="Client No."/>
+                        <column property="client.firstName" caption="First Name"/>
+                        <column property="client.lastName" caption="Last Name"/>
+                        <column property="client.dateOfBirth" caption="Date of Birth"/>
+                        <column property="startDate" caption="Start Date"/>
+                        <column property="endDate" caption="End Date"/>
+                    </columns>
+                </dataGrid>
+            </cssLayout>
+
+        <cssLayout width="100%" height="98%"  stylename="correctionInfo">
+            <label align="TOP_CENTER" value="Deficiencies" stylename="headerSummaryGridItem" width="100%" ></label>
+        </cssLayout>
+            <hbox id="editActions" spacing="true">
+                <button action="windowCommitAndClose"/>
+                <button action="windowClose"/>
+            </hbox>
+        </cssLayout>
+
     </layout>
 </window>

@@ -8,6 +8,8 @@
         <item screen="facilitymanagement_Allegation.browse" openType="DIALOG"/>
         <item screen="facilitymanagement_Perpetrator.browse" openType="DIALOG"/>
         <item screen="facilitymanagement_Appointment.browse"/>
+        <item screen="facilitymanagement_Task.browse"/>
+        <item screen="facilitymanagement_CientWithFacility.browse"/>
     </menu>
     <item insertBefore="help" screen="facilitymanagement_ReferenceCode.browse"/>
 </menu-config>

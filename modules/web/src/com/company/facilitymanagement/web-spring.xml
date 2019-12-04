@@ -15,6 +15,12 @@
                 <entry key="facilitymanagement_AppointmentService"
                        value="com.company.facilitymanagement.service.AppointmentService"/>
                 <entry key="facilitymanagement_TaskService" value="com.company.facilitymanagement.service.TaskService"/>
+                <entry key="facilitymanagement_VisitService"
+                       value="com.company.facilitymanagement.service.VisitService"/>
+                <entry key="facilitymanagement_DateDomainService"
+                       value="com.company.facilitymanagement.service.DateDomainService"/>
+                <entry key="facilitymanagement_ReferenceValueService"
+                       value="com.company.facilitymanagement.service.ReferenceValueService"/>
             </map>
         </property>
     </bean>

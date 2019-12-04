@@ -72,6 +72,7 @@ create table FACILITYMANAGEMENT_COMPLAINT (
     BUSINESS_KEY varchar(255),
     FACILITY_ID varchar(36),
     REPORTING_PARTY_ID bigint,
+    PRIORITY_ID integer,
     --
     primary key (ID)
 )^
@@ -251,6 +252,7 @@ create table FACILITYMANAGEMENT_CIENT_WITH_FACILITY (
     START_DATE date,
     END_DATE date,
     FACILITY_ID varchar(36),
+    CLIENT_ID varchar(36),
     --
     primary key (ID)
 )^
@@ -309,6 +311,11 @@ create table FACILITYMANAGEMENT_VISIT (
     TYPE_OF_VISIT_ID integer,
     WAS_ANNOUNCED_ID integer,
     FACILITY_ID varchar(36),
+    COMPLAINT_ID varchar(36),
+    VISIT_DATE date,
+    START_TIME time,
+    END_TIME time,
+    STATUS_ID integer,
     --
     primary key (ID)
 )^

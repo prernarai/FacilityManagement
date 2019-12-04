@@ -2,10 +2,13 @@ package com.company.facilitymanagement.web.screens.FileComplaint;
 
 import com.company.facilitymanagement.entity.ComplaintModel.*;
 import com.company.facilitymanagement.entity.FacilityManagement.Facility;
+import com.company.facilitymanagement.service.TaskService;
+import com.company.facilitymanagement.service.VisitService;
 import com.company.facilitymanagement.web.PresenterEvents.UserChoiceSelectedEvent;
 import com.haulmont.addon.bproc.service.BprocRuntimeService;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.Metadata;
+import com.haulmont.cuba.core.global.UserSessionSource;
 import com.haulmont.cuba.core.global.View;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.components.AbstractWindow;
@@ -117,12 +120,27 @@ public class FileComplaint extends AbstractWindow {
             dsContext.commit();
 
 
-            startBusinessProcess(complaintDs.getItem());
+           // startBusinessProcess(complaintDs.getItem());
+            createTasks();
             showNotification("Complaint captured successfully and complaint id is :-" + complaintDs.getItem().getBusinessKey(), NotificationType.TRAY);
             close(COMMIT_ACTION_ID);
         });
         //fileComplaintWizard.addWizardCancelClickListener(this::);
     }
+    @Inject
+    TaskService taskService;
+    @Inject
+    private UserSessionSource userSessionSource;
+    @Inject
+    VisitService visitService;
+    private void createTasks() {
+        taskService.createTask("2HourCall",
+                userSessionSource.getUserSession().getUser(),complaintDs.getItem());
+        visitService.createVisit("typeOfVisit", userSessionSource.getUserSession().getUser(),
+                complaintDs.getItem(),complaintDs.getItem().getFacility());
+
+    }
+
 
     private void startBusinessProcess(Complaint complaint) {
 

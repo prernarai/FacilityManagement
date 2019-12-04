@@ -2,26 +2,23 @@
         caption="mainMsg://application.caption">
 
     <data>
-        <collection id="complaintsDc"
-                    class="com.company.facilitymanagement.entity.ComplaintModel.Complaint"
-                    view="complaint-detail-view">
-           <!-- <loader id="complaintsDl">
-              <query>
-                    <![CDATA[select e from facilitymanagement_Complaint e]]>
-                </query>
-            </loader>-->
+        <collection id="visitDc"
+                    class="com.company.facilitymanagement.entity.FacilityManagement.Visit"
+                    view="visit-view">
+
         </collection>
         <collection id="appointmentsDc" class="com.company.facilitymanagement.entity.ScheduleMgmt.Appointment"
                     view="appointment-view">
            <loader/>
         </collection>
-        <collection id="taskDatasDc" class="com.haulmont.addon.bproc.entity.TaskData" view="_local">
+        <collection id="taskDatasDc" class="com.company.facilitymanagement.entity.ReferenceModel.Task" view="task-view">
             <loader />
         </collection>
     </data>
     <actions>
         <action id="launchBusinessProcess" />
         <action id="refreshAppointment" invoke="refreshAppointment"/>
+        <action id="refreshVisit" invoke="refreshVisit"/>
     </actions>
 
     <layout expand="horizontalWrap"
@@ -84,7 +81,7 @@
 
                     <label id="label" stylename="label-as-header" align="TOP_CENTER" value="Welcome, what would you like to do?"/>
 
-                    <cssLayout stylename="choicesGrid">
+                    <cssLayout stylename="choicesGrid" width="95%">
                         <cssLayout  stylename="choiceItem" width="100%">
                         <fragment width="100%" height="100%" screen="facilitymanagement_ChoiceCardFragment" id="choice1"></fragment>
                         </cssLayout>
@@ -110,19 +107,22 @@
                     </cssLayout>
                     </cssLayout>
                     <label stylename="spacer" width="100%" height="10px"></label>
-                    <label id="label2" stylename="label-as-header" align="TOP_CENTER" value="My tasks and appointments"/>
+                    <label id="label2" stylename="label-as-header" align="TOP_CENTER" value="My visits, tasks and appointments"/>
                     <cssLayout stylename="custom-box-for-datagrid" id="searchResult" height="100%" width="100%">
 
                         <cssLayout width="100%" height="95%" stylename="item-1">
                         <dataGrid id="dataGrid"   width="98%" height="45%"
                                  dataContainer="taskDatasDc">
                             <actions>
-                                <action id="createAppointment" caption="create appointment" icon="CALENDAR" invoke="createAppointment"/>
+                                <action id="createAppointment" caption="create appointment"
+                                        icon="CALENDAR" invoke="createAppointment"/>
                             </actions>
                             <columns>
-                                <column property="name"/>
-                                <column property="description"/>
-                                <column property="dueDate"/>
+                                <column property="name" caption="Task"/>
+                                <column property="forComplaint.businessKey" caption="Complaint"/>
+                                <column property="dueDate" caption="Due on"/>
+                                <column property="assigne.name" caption="Assignee"/>
+
 
                             </columns>
                             <buttonsPanel>
@@ -130,27 +130,36 @@
                             </buttonsPanel>
                         </dataGrid>
                             <dataGrid id="dataGrid2"  width="98%" height="50%" css="margin-top:10px"
-                                      dataContainer="complaintsDc">
+                                      dataContainer="visitDc">
                             <actions>
                                 <action id="edit" type="edit"/>
+                                <action id="createAppointment" caption="create appointment"
+                                        icon="CALENDAR" invoke="createAppointment"/>
                             </actions>
+
                             <columns>
-                                <column property="businessKey" caption="control number"/>
-                                <column property="facility"/>
-                                <column property="sourceOfComplaint"/>
-                                <column property="visitDueDate" caption="next visit due date"/>
+                                <column property="businessKey" caption="Visit Number"/>
+                                <column property="facility" />
+                                <column property="complaint.businessKey" caption="related to complaint?"/>
+                                <column property="visitDate" caption="visit date"/>
+                                <column property="status" caption="status"/>
+                                <column property="typeOfVisit" caption="visit type"/>
 
                             </columns>
                                 <buttonsPanel>
 
                                     <button id="editBtn" action="dataGrid2.edit"/>
+                                    <button id="createAppointmentbtn1" action="dataGrid2.createAppointment"/>
+                                    <button id="refreshVisit" action="refreshVisit" icon="REFRESH"></button>
 
                                 </buttonsPanel>
                             </dataGrid>
                         </cssLayout>
                     <cssLayout width="95%" height="95%" stylename="item-2">
+
                         <buttonsPanel>
-                            <button id="refresh" action="refreshAppointment" icon="REFRESH"></button>
+                            <button id="refreshAppointment" action="refreshAppointment" icon="REFRESH"></button>
+
                         </buttonsPanel>
 
                         <calendar id="calendar" width="99%" captionProperty="topic" dataContainer="appointmentsDc"

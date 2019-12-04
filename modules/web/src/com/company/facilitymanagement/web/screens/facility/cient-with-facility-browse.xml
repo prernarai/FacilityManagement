@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="cientWithFacilitiesTable"
+        messagesPack="com.company.facilitymanagement.web.screens.facility">
+    <data readOnly="true">
+        <collection id="cientWithFacilitiesDc"
+                    class="com.company.facilitymanagement.entity.FacilityManagement.CientWithFacility"
+                    view="cientWithFacility-view">
+            <loader id="cientWithFacilitiesDl">
+                <query>
+                    <![CDATA[select e from facilitymanagement_CientWithFacility e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="cientWithFacilitiesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="cientWithFacilitiesTable"
+                dataLoader="cientWithFacilitiesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="cientWithFacilitiesTable"
+                    width="100%"
+                    dataContainer="cientWithFacilitiesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="startDate"/>
+                <column id="endDate"/>
+                <column id="facility"/>
+                <column id="client"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="cientWithFacilitiesTable.create"/>
+                <button id="editBtn" action="cientWithFacilitiesTable.edit"/>
+                <button id="removeBtn" action="cientWithFacilitiesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

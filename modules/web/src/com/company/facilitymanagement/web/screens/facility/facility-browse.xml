@@ -46,7 +46,7 @@
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createBtn" action="facilitiesTable.create"/>
-                <button id="editBtn" action="facilitiesTable.edit"/>
+                <button id="editBtn" action="facilitiesTable.edit" />
                 <button id="removeBtn" action="facilitiesTable.remove"/>
             </buttonsPanel>
         </groupTable>

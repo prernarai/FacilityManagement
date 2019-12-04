@@ -71,7 +71,8 @@
                     <lookupField width="100%" property="isAbuseReportFiled" caption="msg://isAbuseReported"  datasource="complaintDs" optionsDatasource="yesNoDs"/>
                 </vbox>
             </cssLayout>
-                <linkButton stylename="borderless" invoke="onAllegationLinkClicked" align="BOTTOM_RIGHT" width="150px" caption="Add more allegation"></linkButton>
+               <cssLayout><linkButton stylename="borderless" invoke="onAllegationLinkClicked" align="BOTTOM_RIGHT" width="150px"
+               caption="Add more allegation"></linkButton></cssLayout>
                 <frame id="allegationFrame" width="100%" screen="facilitymanagement_Allegationitemframe"></frame>
             <frame id="windowActions" width="100%" align="BOTTOM_LEFT"
                    screen="extendedEditWindowActions" />

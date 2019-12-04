@@ -17,6 +17,12 @@
         <property name="state" view="_minimal">
             <property name="value"/>
         </property>
+        <property name="clients" view="_local"/>
+        <property name="licenseStatus" view="_local"/>
+        <property name="visitList" fetch="JOIN" view="_local">
+            <property name="typeOfVisit"/>
+            <property name="status" fetch="JOIN" view="_local"/>
+        </property>
     </view>
     <view entity="facilitymanagement_Complaint" name="complaint-detail-view" extends="_local">
         <property name="isAbuseReportRequired" view="_minimal"/>
@@ -84,5 +90,25 @@
     <view entity="facilitymanagement_Appointment" name="appointment-view" extends="_local">
         <property name="whoIsWorker" view="_minimal"/>
         <property name="visitingTo" view="facility-view"/>
+    </view>
+    <view entity="facilitymanagement_Task" name="task-view" extends="_local">
+        <property name="assigne" view="_minimal"/>
+        <property name="forFacility" view="_minimal"/>
+        <property name="forComplaint" view="complaint-view"/>
+        <property name="status" view="_local"/>
+    </view>
+    <view entity="facilitymanagement_Visit" name="visit-view" extends="_local">
+        <property name="typeOfVisit" view="_local"/>
+        <property name="wasAnnounced" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="facility" view="_minimal"/>
+        <property name="complaint" view="complaint-view"/>
+        <property name="status" view="_minimal"/>
+    </view>
+    <view entity="facilitymanagement_Client" name="client-view" extends="_local"/>
+    <view entity="facilitymanagement_CientWithFacility" name="cientWithFacility-view" extends="_local">
+        <property name="facility" view="_minimal"/>
+        <property name="client" fetch="JOIN" view="client-view"/>
     </view>
 </views>

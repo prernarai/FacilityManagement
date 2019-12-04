@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.facilitymanagement.web.screens.facility">
+    <data>
+        <instance id="cientWithFacilityDc"
+                  class="com.company.facilitymanagement.entity.FacilityManagement.CientWithFacility"
+                  view="cientWithFacility-view">
+            <loader/>
+        </instance>
+        <collection id="clientsDc" class="com.company.facilitymanagement.entity.FacilityManagement.Client"
+                    view="_minimal">
+            <loader id="clientsLc">
+                <query>
+                    <![CDATA[select e from facilitymanagement_Client e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="cientWithFacilityDc">
+            <column width="250px">
+                <dateField id="startDateField" property="startDate"/>
+                <dateField id="endDateField" property="endDate"/>
+                <pickerField id="facilityField" property="facility">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <lookupPickerField id="clientField" optionsContainer="clientsDc" property="client">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,11 +1,14 @@
 package com.company.facilitymanagement.web.screens;
 
 import com.company.facilitymanagement.entity.ComplaintModel.Complaint;
+import com.company.facilitymanagement.entity.FacilityManagement.Visit;
+import com.company.facilitymanagement.entity.ReferenceModel.Task;
 import com.company.facilitymanagement.entity.ScheduleMgmt.Appointment;
 import com.company.facilitymanagement.service.AppointmentService;
 import com.company.facilitymanagement.service.ComplaintService;
 
 import com.company.facilitymanagement.service.TaskService;
+import com.company.facilitymanagement.service.VisitService;
 import com.company.facilitymanagement.web.PresenterEvents.UserChoiceSelectedEvent;
 import com.company.facilitymanagement.web.screens.ChoiceScreens.ChoiceCardFragment;
 import com.company.facilitymanagement.web.screens.FileComplaint.FileComplaint;
@@ -36,7 +39,7 @@ public class ExtMainScreen extends MainScreen {
         bprocRuntimeService.startProcessInstanceByKey("file-a-complaint",processVariables);
     }*/
     @Inject
-    CollectionContainer<Complaint> complaintsDc;
+    CollectionContainer<Visit> visitDc;
    @Inject
    private ChoiceCardFragment choice1;
     @Inject
@@ -56,13 +59,16 @@ public class ExtMainScreen extends MainScreen {
     @Inject
     private  CollectionContainer<Appointment>  appointmentsDc;
     @Inject
-    private  CollectionContainer<TaskData>  taskDatasDc;
+    private  CollectionContainer<Task>  taskDatasDc;
     @Inject
     ComplaintService complaintService;
     @Inject
     AppointmentService appointmentService;
     @Inject
     TaskService taskService;
+
+    @Inject
+    VisitService visitService;
 
 
 
@@ -79,21 +85,21 @@ public class ExtMainScreen extends MainScreen {
                "TrainingSchedule","CALENDAR");
        this.choice6.addChoiceDescription("My Incident Reports",
                "ManageReports","SNAPCHAT_GHOST");
-        LoadComplaints();
+        LoadVisits();
         LoadAppointments();
         LoadTasks();
    }
 
 
-    private void LoadComplaints() {
+    private void LoadVisits() {
         //since loader is not working so trying the service. Need to figure out why loader not working on main widow
-      List<Complaint> complaintList=complaintService.getComplaints();
-       complaintsDc.setItems(complaintList);
+      List<Visit> visitList=visitService.getVisitList();
+        visitDc.setItems(visitList);
 
     }
     private void LoadTasks() {
         //since loader is not working so trying the service. Need to figure out why loader not working on main widow
-        List<TaskData> taskList=taskService.getTaskList();
+        List<Task> taskList=taskService.getTaskList();
         taskDatasDc.setItems(taskList);
 
     }
@@ -128,6 +134,12 @@ public class ExtMainScreen extends MainScreen {
 
     public void refreshAppointment() {
         this.LoadAppointments();
+    }
+
+    public void refreshVisit() {
+        List<Visit> visitList=visitService.getVisitList();
+        visitDc.setItems(visitList);
+
     }
 
 

@@ -2,6 +2,7 @@ package com.company.facilitymanagement.entity.ComplaintModel;
 
 import com.company.facilitymanagement.entity.FacilityManagement.Facility;
 import com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue;
+import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Listeners;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
@@ -12,6 +13,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@NamePattern("%s|businessKey")
 @PublishEntityChangedEvents
 @Table(name = "FACILITYMANAGEMENT_COMPLAINT")
 @Entity(name = "facilitymanagement_Complaint")
@@ -64,6 +66,19 @@ public class Complaint extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "REPORTING_PARTY_ID")
     protected Complainant reportingParty;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRIORITY_ID")
+    protected ReferenceValue priority;
+
+    public ReferenceValue getPriority() {
+        return priority;
+    }
+
+    public void setPriority(ReferenceValue priority) {
+        this.priority = priority;
+    }
 
     public Complainant getReportingParty() { return reportingParty; }
 
