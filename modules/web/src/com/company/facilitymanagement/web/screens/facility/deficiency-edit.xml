@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+
+        messagesPack="com.company.facilitymanagement.web.screens.facility">
+    <data>
+        <instance id="deficiencyDc"
+                  class="com.company.facilitymanagement.entity.FacilityManagement.Deficiency"
+                  view="deficiency-view">
+            <loader/>
+        </instance>
+        <collection id="sectionNumbersDc" class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                    view="_minimal">
+            <loader id="sectionNumbersLc">
+                <query>
+                    <![CDATA[select e from facilitymanagement_ReferenceValue e  where e.referenceCode.code='sectionNumbers']]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="forFacilitiesDc" class="com.company.facilitymanagement.entity.FacilityManagement.Facility"
+                    view="_minimal">
+            <loader id="forFacilitiesLc">
+                <query>
+                    <![CDATA[select e from facilitymanagement_Facility e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="visitIdentifiedsDc" class="com.company.facilitymanagement.entity.FacilityManagement.Visit"
+                    view="_minimal">
+            <loader id="visitIdentifiedsLc">
+                <query>
+                    <![CDATA[select e from facilitymanagement_Visit e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="deficiencyStatusesDc"
+                    class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue" view="_minimal">
+            <loader id="deficiencyStatusesLc">
+                <query>
+                    <![CDATA[select e from
+                     facilitymanagement_ReferenceValue e  where e.referenceCode.code='deficiencyStatuses']]>
+                </query>
+            </loader>
+        </collection>
+
+        <collection id="pocContainer" class="com.company.facilitymanagement.entity.FacilityManagement.ProofOfCorrection"
+                    view="proofOfCorrection-view">
+            <loader id="pocDl">
+                <query>
+                    <![CDATA[select e from facilitymanagement_ProofOfCorrection e where e.deficiency = :deficiency1]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="dataForPoc" margin="true" spacing="true">
+        <form id="form" dataContainer="deficiencyDc">
+            <column width="250px">
+                <lookupPickerField id="sectionNumberField" optionsContainer="sectionNumbersDc" property="sectionNumber">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+                <textField id="commentsField" property="comments"/>
+                <textField id="pocField" property="poc"/>
+                <dateField id="dueDateField" property="dueDate"/>
+                <dateField id="dateCorrectedField" property="dateCorrected"/>
+                <lookupPickerField id="forFacilityField" optionsContainer="forFacilitiesDc" property="forFacility">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+                <lookupPickerField id="visitIdentifiedField" optionsContainer="visitIdentifiedsDc"
+                                   property="visitIdentified">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+                <dateField id="visitCorrectedField" property="visitCorrected"/>
+                <lookupPickerField id="deficiencyStatusField" optionsContainer="deficiencyStatusesDc"
+                                   property="deficiencyStatus"/>
+            </column>
+        </form>
+       <vbox id="dataForPoc" margin="true" css="margin-top:20px;">
+           <dataGrid selectionMode="MULTI_CHECK" id="pocTable" css="padding:5px; "
+                     height="95%" width="100%"
+                     dataContainer="pocContainer">
+               <actions>
+                   <action id="create" type="create" openType="DIALOG"/>
+                   <action id="edit" type="edit" openType="DIALOG"/>
+                   <action id="remove" type="remove" openType="DIALOG"/>
+               </actions>
+               <columns>
+                   <column property="proofType" caption="Section Number"/>
+                   <column property="providedDate" caption="Due Date"/>
+
+               </columns>
+               <buttonsPanel id="buttonsPanel"
+                             alwaysVisible="true" align="BOTTOM_LEFT">
+                   <button id="createBtn" action="pocTable.create"/>
+                   <button id="editBtn" action="pocTable.edit"/>
+                   <button id="removeBtn" action="pocTable.remove"/>
+               </buttonsPanel>
+           </dataGrid>
+       </vbox>
+        <hbox  id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

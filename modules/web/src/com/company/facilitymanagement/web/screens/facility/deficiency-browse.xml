@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="deficienciesTable"
+        messagesPack="com.company.facilitymanagement.web.screens.facility">
+    <data readOnly="true">
+        <collection id="deficienciesDc"
+                    class="com.company.facilitymanagement.entity.FacilityManagement.Deficiency"
+                    view="deficiency-view">
+            <loader id="deficienciesDl">
+                <query>
+                    <![CDATA[select e from facilitymanagement_Deficiency e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="deficienciesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="deficienciesTable"
+                dataLoader="deficienciesDl">
+            <properties include=".*"/>
+        </filter>
+        <dataGrid id="deficienciesTable"
+                    width="100%"
+                    dataContainer="deficienciesDc">
+            <actions>
+                <action id="create" type="create" openType="DIALOG"/>
+                <action id="edit" type="edit" openType="DIALOG"/>
+                <action id="remove" type="remove" openType="DIALOG"/>
+            </actions>
+            <columns>
+                <column property="sectionNumber"/>
+                <column property="comments"/>
+                <column property="poc"/>
+                <column property="dueDate"/>
+                <column property="dateCorrected"/>
+                <column property="forFacility"/>
+                <column property="visitIdentified"/>
+                <column property="visitCorrected"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="deficienciesTable.create"/>
+                <button id="editBtn" action="deficienciesTable.edit"/>
+                <button id="removeBtn" action="deficienciesTable.remove"/>
+            </buttonsPanel>
+        </dataGrid>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

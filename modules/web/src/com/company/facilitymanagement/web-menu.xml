@@ -8,9 +8,14 @@
         <item screen="facilitymanagement_Allegation.browse" openType="DIALOG"/>
         <item screen="facilitymanagement_Perpetrator.browse" openType="DIALOG"/>
         <item screen="facilitymanagement_Appointment.browse"/>
-        <item screen="facilitymanagement_Task.browse"/>
         <item screen="facilitymanagement_CientWithFacility.browse"/>
         <item screen="facilitymanagement_Visit.browse"/>
+        <item screen="facilitymanagement_Task.browse"/>
+        <item screen="facilitymanagement_ConductinterviewScreen"/>
+        <item screen="facilitymanagement_Interviewstep1Screen"/>
+        <item screen="facilitymanagement_Interviewstep2Screen"/>
+        <item screen="facilitymanagement_Deficiency.browse"/>
+        <item screen="facilitymanagement_ProofOfCorrection.browse"/>
     </menu>
     <item insertBefore="help" screen="facilitymanagement_ReferenceCode.browse"/>
 </menu-config>

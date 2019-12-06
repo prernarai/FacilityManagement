@@ -11,6 +11,7 @@ import com.company.facilitymanagement.service.TaskService;
 import com.company.facilitymanagement.service.VisitService;
 import com.company.facilitymanagement.web.PresenterEvents.UserChoiceSelectedEvent;
 import com.company.facilitymanagement.web.screens.ChoiceScreens.ChoiceCardFragment;
+import com.company.facilitymanagement.web.screens.ConductInterview.ConductinterviewScreen;
 import com.company.facilitymanagement.web.screens.FileComplaint.FileComplaint;
 import com.company.facilitymanagement.web.screens.ScheduleMgmt.AppointmentEdit;
 import com.company.facilitymanagement.web.screens.complainant.ClientBrowse;
@@ -19,8 +20,12 @@ import com.company.facilitymanagement.web.screens.facility.FacilityBrowse;
 import com.company.facilitymanagement.web.screens.facility.VisitBrowse;
 import com.haulmont.addon.bproc.entity.TaskData;
 import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.ScreenBuilders;
 import com.haulmont.cuba.gui.Screens;
+import com.haulmont.cuba.gui.components.DataGrid;
+import com.haulmont.cuba.gui.components.Frame;
+import com.haulmont.cuba.gui.components.Window;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.cuba.web.app.main.MainScreen;
@@ -74,7 +79,8 @@ public class ExtMainScreen extends MainScreen {
     @Inject
     VisitService visitService;
 
-
+    @Inject
+    private Notifications notifications;
 
     @Subscribe
    protected void onBeforeShow(BeforeShowEvent event) {
@@ -92,6 +98,8 @@ public class ExtMainScreen extends MainScreen {
         LoadVisits();
         LoadAppointments();
         LoadTasks();
+
+
    }
 
 
@@ -169,6 +177,27 @@ public class ExtMainScreen extends MainScreen {
         List<Visit> visitList=visitService.getVisitList();
         visitDc.setItems(visitList);
 
+    }
+@Inject
+    DataGrid<Task> dataGrid;
+    public void startInterview() {
+        Task selectedTask=dataGrid.getSingleSelected();
+        ConductinterviewScreen screen = screens.create(ConductinterviewScreen.class, OpenMode.DIALOG);
+        screen.setPassedTask(selectedTask);
+        screens.show(screen);
+    }
+
+    public void refreshTask() {
+        List<Task> taskList=taskService.getTaskList();
+        taskDatasDc.setItems(taskList);
+    }
+
+
+    public void submitItinerary() {
+        taskService.createTask("approveItinerary",
+               null,null);
+
+        notifications.create().withCaption("Approval request submitted!").show();
     }
 
 

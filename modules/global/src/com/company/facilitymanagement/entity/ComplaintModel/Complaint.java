@@ -8,6 +8,7 @@ import com.haulmont.cuba.core.entity.annotation.Listeners;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
 import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
+import com.haulmont.cuba.security.entity.User;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -71,6 +72,32 @@ public class Complaint extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRIORITY_ID")
     protected ReferenceValue priority;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CURRENT_STATUS_ID")
+    protected ReferenceValue currentStatus;
+
+    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ASSIGNED_TO_ID")
+    protected User assignedTo;
+
+    public User getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(User assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+    public ReferenceValue getCurrentStatus() {
+        return currentStatus;
+    }
+
+    public void setCurrentStatus(ReferenceValue currentStatus) {
+        this.currentStatus = currentStatus;
+    }
 
     public ReferenceValue getPriority() {
         return priority;

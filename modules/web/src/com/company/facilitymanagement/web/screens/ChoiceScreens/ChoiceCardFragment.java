@@ -1,6 +1,7 @@
 package com.company.facilitymanagement.web.screens.ChoiceScreens;
 
 import com.haulmont.addon.bproc.service.BprocRuntimeService;
+import com.haulmont.addon.dashboard.web.annotation.DashboardWidget;
 import com.haulmont.cuba.core.global.Events;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.UiComponents;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @UiController("facilitymanagement_ChoiceCardFragment")
 @UiDescriptor("Choice-Card-fragment.xml")
+@DashboardWidget(name="Choice Card")
 public class ChoiceCardFragment extends ScreenFragment {
     @Inject
     private Notifications notifications;

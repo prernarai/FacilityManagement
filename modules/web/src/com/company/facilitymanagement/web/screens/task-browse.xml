@@ -6,10 +6,19 @@
     <data readOnly="true">
         <collection id="tasksDc"
                     class="com.company.facilitymanagement.entity.ReferenceModel.Task"
-                    view="_local">
+                    view="task-view">
             <loader id="tasksDl">
                 <query>
                     <![CDATA[select e from facilitymanagement_Task e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="tasksOptionDc"
+                    class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                    view="_local">
+            <loader id="status">
+                <query>
+                    <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='taskStatus']]>
                 </query>
             </loader>
         </collection>
@@ -25,7 +34,7 @@
         </filter>
         <groupTable id="tasksTable"
                     width="100%"
-                    dataContainer="tasksDc">
+                       dataContainer="tasksDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
@@ -33,7 +42,11 @@
             </actions>
             <columns>
                 <column id="name"/>
+                <column id="assigne"/>
                 <column id="description"/>
+                <column id="forFacility"/>
+                <column id="forComplaint"/>
+                <column id="status" optionsContainer="tasksOptionDc"/>
                 <column id="dueDate"/>
             </columns>
             <rowsCount/>

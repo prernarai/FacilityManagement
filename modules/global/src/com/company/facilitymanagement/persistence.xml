@@ -19,5 +19,7 @@
         <class>com.company.facilitymanagement.entity.ScheduleMgmt.Appointment</class>
         <class>com.company.facilitymanagement.entity.ReferenceModel.Task</class>
         <class>com.company.facilitymanagement.entity.FacilityManagement.Visit</class>
+        <class>com.company.facilitymanagement.entity.FacilityManagement.Deficiency</class>
+        <class>com.company.facilitymanagement.entity.FacilityManagement.ProofOfCorrection</class>
     </persistence-unit>
 </persistence>

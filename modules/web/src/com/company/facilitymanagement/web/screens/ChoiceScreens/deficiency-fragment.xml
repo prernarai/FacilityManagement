@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd">
+    <data>
+        <collection id="deficienciesDc" class="com.company.facilitymanagement.entity.FacilityManagement.Deficiency"
+                    view="deficiency-view">
+         <loader id="deficienciesDl">
+
+                        <query>
+                            <![CDATA[select e from facilitymanagement_Deficiency e]]>
+                        </query>
+
+                    </loader>
+        </collection>
+    </data>
+    <layout expand="deficienciesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="deficienciesTable"
+                dataLoader="deficienciesDl">
+            <properties include=".*"/>
+        </filter>
+        <dataGrid id="deficienciesTable"
+                  width="100%"
+                  dataContainer="deficienciesDc">
+            <actions>
+                <action id="create" type="create" openType="DIALOG"/>
+                <action id="edit" type="edit" openType="DIALOG"/>
+                <action id="remove" type="remove" openType="DIALOG"/>
+            </actions>
+            <columns>
+                <column property="sectionNumber"/>
+                <column property="comments"/>
+                <column property="poc"/>
+                <column property="dueDate"/>
+                <column property="dateCorrected"/>
+                <column property="forFacility"/>
+                <column property="visitIdentified"/>
+                <column property="visitCorrected"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="deficienciesTable.create"/>
+                <button id="editBtn" action="deficienciesTable.edit"/>
+                <button id="removeBtn" action="deficienciesTable.remove"/>
+            </buttonsPanel>
+        </dataGrid>
+    </layout>
+</fragment>

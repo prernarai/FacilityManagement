@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://editorCaption"
+        caption="Facility Editor "
 
         messagesPack="com.company.facilitymanagement.web.screens.facility">
     <data>
@@ -27,7 +27,14 @@
             </loader>
         </collection>
 
-
+        <collection id="deficiencyDc" class="com.company.facilitymanagement.entity.FacilityManagement.Deficiency"
+                    view="_local">
+            <loader id="deficiencyDl">
+                <query>
+                    <![CDATA[select e from facilitymanagement_Deficiency e where e.forFacility = :facility]]>
+                </query>
+            </loader>
+        </collection>
 
     </data>
     <dialogMode height="900px"
@@ -39,10 +46,10 @@
                 <cssLayout height="95%"  stylename="header-item">
                     <vbox   height="100%"  align="MIDDLE_CENTER">
                         <label align="TOP_CENTER" icon="HOME"></label>
-                        <label height="100%"  align="MIDDLE_CENTER" property="businessKey" dataContainer="facilityDc"></label>
-                        <label height="100%" align="MIDDLE_CENTER" property="licenseStatus"
+                        <label height="100%"  stylename="labelStyle"   align="MIDDLE_CENTER" property="businessKey" dataContainer="facilityDc"></label>
+                        <label height="100%" stylename="labelStyle" align="MIDDLE_CENTER" property="licenseStatus"
                                value="Status" dataContainer="facilityDc"></label>
-                        <label height="100%"  align="MIDDLE_CENTER" property="licenseDate"
+                        <label height="100%" stylename="labelStyle" align="MIDDLE_CENTER" property="licenseDate"
                                dataContainer="facilityDc"></label>
                     </vbox>
                 </cssLayout>
@@ -51,7 +58,7 @@
                 <cssLayout height="95%" stylename="header-item">
 
                     <vbox   height="100%"  align="MIDDLE_CENTER">
-                        <label align="TOP_CENTER" icon="BULLHORN" value="Complaints"></label>
+                        <label align="TOP_CENTER" icon="BULLHORN" stylename="labelStyle" value="Complaints"></label>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="2 open"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="5 closed"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="7 total"></linkButton>
@@ -59,15 +66,15 @@
                 </cssLayout>
                 <cssLayout height="95%" stylename="header-item">
                     <vbox   height="100%"  align="MIDDLE_CENTER">
-                        <label align="TOP_CENTER" icon="LIST" value="Incident Reports"></label>
-                        <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="1 open"></linkButton>
+                        <label align="TOP_CENTER" icon="LIST"  stylename="labelStyle"  value="Incident Reports"></label>
+                        <linkButton stylename="borderless"  align="MIDDLE_CENTER" caption="1 open"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="5 closed"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="6 total"></linkButton>
                     </vbox>
                 </cssLayout>
                 <cssLayout height="95%" stylename="header-item">
                     <vbox   height="100%"  align="MIDDLE_CENTER">
-                        <label align="TOP_CENTER" icon="TIMES" value="Deficiencies"></label>
+                        <label align="TOP_CENTER" icon="TIMES"  stylename="labelStyle" value="Deficiencies"></label>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="1 open"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="5 closed"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="6 total "></linkButton>
@@ -75,7 +82,7 @@
                 </cssLayout>
                 <cssLayout height="95%" stylename="header-item">
                     <vbox   height="100%"  align="MIDDLE_CENTER">
-                        <label align="TOP_CENTER" icon="CALENDAR" value="Annual Visits"></label>
+                        <label align="TOP_CENTER" icon="CALENDAR"  stylename="labelStyle" value="Annual Visits"></label>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="1 pending"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="3 done"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="4 total "></linkButton>
@@ -83,7 +90,7 @@
                 </cssLayout>
                 <cssLayout height="95%" stylename="header-item">
                     <vbox   height="100%"  align="MIDDLE_CENTER">
-                        <label align="TOP_CENTER" icon="CALENDAR" value="Other Visits"></label>
+                        <label align="TOP_CENTER" icon="CALENDAR"  stylename="labelStyle" value="Other Visits"></label>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="2 pending"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="3 done"></linkButton>
                         <linkButton stylename="borderless" align="MIDDLE_CENTER" caption="5 total "></linkButton>
@@ -141,8 +148,31 @@
                 </dataGrid>
             </cssLayout>
 
-        <cssLayout width="100%" height="98%"  stylename="correctionInfo">
+        <cssLayout width="100%" height="100%" css="margin-top:10px" stylename="correctionInfo">
             <label align="TOP_CENTER" value="Deficiencies" stylename="headerSummaryGridItem" width="100%" ></label>
+            <dataGrid selectionMode="MULTI_CHECK" id="deficiencyDcTable" css="padding:5px; background-color:white"
+                      height="95%" width="100%"
+                      dataContainer="deficiencyDc">
+                <actions>
+                    <action id="create" type="create" openType="DIALOG"/>
+                    <action id="edit" type="edit" openType="DIALOG"/>
+                    <action id="remove" type="remove" openType="DIALOG"/>
+                </actions>
+                <columns>
+                    <column property="sectionNumber" caption="Section Number"/>
+                    <column property="dueDate" caption="Due Date"/>
+                    <column property="visitIdentified.businessKey" caption="Visit identified"/>
+                    <column property="comments" caption="Comments"/>
+                    <column property="dateCorrected" caption="Date Corrected"/>
+                    <column property="deficiencyStatus" caption="Status"/>
+                </columns>
+                <buttonsPanel id="buttonsPanel"
+                               alwaysVisible="true" align="BOTTOM_LEFT">
+                    <button id="createBtn" action="deficiencyDcTable.create"/>
+                    <button id="editBtn" action="deficiencyDcTable.edit"/>
+                    <button id="removeBtn" action="deficiencyDcTable.remove"/>
+                </buttonsPanel>
+            </dataGrid>
         </cssLayout>
             <hbox id="editActions" spacing="true">
                 <button action="windowCommitAndClose"/>

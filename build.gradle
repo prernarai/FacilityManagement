@@ -49,6 +49,10 @@ dependencies {
     appComponent('com.haulmont.addon.bproc:bproc-global:1.0.0')
     appComponent("com.haulmont.fts:fts-global:$cubaVersion")
     appComponent('de.diedavids.cuba.wizard:wizard-global:0.5.0')
+    appComponent("com.haulmont.charts:charts-global:$cubaVersion")
+    appComponent("com.haulmont.reports:reports-global:$cubaVersion")
+    appComponent('com.haulmont.addon.dashboard:dashboard-global:3.1.1')
+    appComponent('com.haulmont.addon.dashboardchart:dashboardchart-global:1.2.0')
 }
 
 def hsql = 'org.hsqldb:hsqldb:2.4.1'

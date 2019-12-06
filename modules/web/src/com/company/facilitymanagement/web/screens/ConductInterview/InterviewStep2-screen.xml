@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.ConductInterview.Interviewstep2Screen"
+        messagesPack="com.company.facilitymanagement.web.screens.ConductInterview"
+        caption="msg://caption">
+    <dialogMode height="1100px"
+                width="100%"
+                />
+    <layout  width="100%" stylename="layoutStyle" margin="true"  spacing="true">
+    <cssLayout stylename="mainContentGrid">
+
+        <cssLayout stylename="complaintSummaryGrid">
+            <label align="TOP_CENTER" value="Summary" stylename="complaintSummaryGridItem" width="100%" ></label>
+            <vbox stylename="item" width="100%"><label value="Facility Number"></label>
+                <linkButton  width="100%" stylename="borderless" id="facilityNumberLink" invoke="onFacilityLinkClicked"
+                             caption="Facility Number" icon="font-icon:HOME">Facility Number</linkButton></vbox>
+            <vbox stylename="item" width="100%" ><lookupField css="padding:5px;" width="100%" property="currentStatus"
+                                                              caption="Status" datasource="complaintDs"/>
+            </vbox>
+            <vbox stylename="item" width="100%" ><textField css="padding:5px;" width="100%" property="businessKey" caption="Control number" datasource="complaintDs"/>
+            </vbox>
+            <vbox stylename="item" width="100%"><lookupField width="100%" property="sourceOfComplaint" caption="What was the source"
+                                                             datasource="complaintDs" optionsDatasource="complaintSourceValuesDs">
+            </lookupField></vbox>
+            <vbox stylename="item" width="100%" ><lookupField width="100%"  caption="Who is reporting?"
+                                                              property="reportingParty" datasource="complaintDs"
+                                                              optionsDatasource="reportingPartiesDs"/>
+            </vbox>
+
+            <vbox stylename="item" width="100%" >  <dateField width="100%" caption="When is next visit?"
+                                                              property="visitDueDate" datasource="complaintDs"/></vbox>
+        </cssLayout>
+        <cssLayout stylename="complaintDetailGrid">
+            <label align="TOP_CENTER" value="Incident Detail" stylename="complaintDetailLabelGridItem" width="100%" ></label>
+            <vbox width="100%" height="100%" stylename="narrativeItem"  >
+                <richTextArea  width="100%" height="100%" align="MIDDLE_CENTER"  property="whatHappened" caption="What happened?"
+                               datasource="complaintDs" captionAsHtml="true"/>
+            </vbox>
+            <vbox  width="100%" stylename="narrativeItem"  >
+                <lookupField property="didIncidentTakePlaceInFacility" width="100%" height="100%"
+                             optionsDatasource="yesNoDs" caption="Was it in facility" datasource="complaintDs" />
+                <textArea width="100%" rowspan="2" caption="Other details abut location" property="otherDetailsOfLocation" datasource="complaintDs"/>
+                <lookupField width="100%" property="isAbuseReportRequired" caption="is abuse report required" datasource="complaintDs" optionsDatasource="yesNoDs"/>
+                <lookupField width="100%" property="isAbuseReportFiled" caption="is abuse report reported"  datasource="complaintDs" optionsDatasource="yesNoDs"/>
+            </vbox>
+        </cssLayout>
+        <cssLayout><linkButton stylename="borderless" invoke="onAllegationLinkClicked" align="BOTTOM_RIGHT" width="150px"
+                               caption="Add more allegation"></linkButton></cssLayout>
+        <frame id="allegationFrame" width="100%" screen="facilitymanagement_Allegationitemframe"></frame>
+      <!--  <frame id="windowActions" width="100%" align="BOTTOM_LEFT"
+               screen="extendedEditWindowActions" />-->
+    </cssLayout>
+    </layout>
+</window>

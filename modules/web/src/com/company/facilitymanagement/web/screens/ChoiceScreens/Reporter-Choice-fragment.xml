@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd">
+    <layout>
+       <!-- <label id="label" align="TOP_CENTER" value="What would you like to do?"/>-->
+
+        <cssLayout width="70%" stylename="choicesDashboardGrid">
+
+            <fragment stylename="choiceDashboardItem" screen="facilitymanagement_ChoiceCardFragment" id="choice1"></fragment>
+            <fragment stylename="choiceDashboardItem" screen="facilitymanagement_ChoiceCardFragment" id="choice2"></fragment>
+            <fragment stylename="choiceDashboardItem" screen="facilitymanagement_ChoiceCardFragment" id="choice3"></fragment>
+            <fragment stylename="choiceDashboardItem" screen="facilitymanagement_ChoiceCardFragment" id="choice4"></fragment>
+            <fragment stylename="choiceDashboardItem" screen="facilitymanagement_ChoiceCardFragment" id="choice5"></fragment>
+
+        </cssLayout>
+    </layout>
+</fragment>

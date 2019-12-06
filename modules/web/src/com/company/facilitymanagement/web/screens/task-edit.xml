@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.facilitymanagement.web.screens">
+    <data>
+        <instance id="taskDc"
+                  class="com.company.facilitymanagement.entity.ReferenceModel.Task"
+                  view="task-view">
+            <loader/>
+        </instance>
+        <collection id="forFacilitiesDc" class="com.company.facilitymanagement.entity.FacilityManagement.Facility"
+                    view="_minimal">
+            <loader id="forFacilitiesLc">
+                <query>
+                    <![CDATA[select e from facilitymanagement_Facility e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="forComplaintsDc" class="com.company.facilitymanagement.entity.ComplaintModel.Complaint"
+                    view="_minimal">
+            <loader id="forComplaintsLc">
+                <query>
+                    <![CDATA[select e from facilitymanagement_Complaint e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="statusesDc" class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                    view="_minimal">
+            <loader id="statusesLc">
+                <query>
+                    <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='taskStatus']]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="taskDc">
+            <column width="250px">
+                <textField id="nameField" property="name"/>
+                <pickerField id="assigneField" property="assigne">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+                <textField id="descriptionField" property="description"/>
+                <lookupPickerField id="forFacilityField" optionsContainer="forFacilitiesDc" property="forFacility">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+                <lookupPickerField id="forComplaintField" optionsContainer="forComplaintsDc" property="forComplaint">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                    </actions>
+                </lookupPickerField>
+                <lookupPickerField id="statusField" optionsContainer="statusesDc" property="status"/>
+                <dateField id="dueDateField" property="dueDate"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

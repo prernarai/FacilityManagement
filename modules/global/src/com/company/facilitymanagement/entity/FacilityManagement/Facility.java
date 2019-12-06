@@ -68,6 +68,18 @@ public class Facility extends StandardEntity {
     @OneToMany(mappedBy = "facility")
     protected List<Visit> visitList;
 
+    @OrderBy("dueDate")
+    @OneToMany(mappedBy = "forFacility")
+    protected List<Deficiency> lsitOfDeficiency;
+
+    public List<Deficiency> getLsitOfDeficiency() {
+        return lsitOfDeficiency;
+    }
+
+    public void setLsitOfDeficiency(List<Deficiency> lsitOfDeficiency) {
+        this.lsitOfDeficiency = lsitOfDeficiency;
+    }
+
     public List<Visit> getVisitList() {
         return visitList;
     }

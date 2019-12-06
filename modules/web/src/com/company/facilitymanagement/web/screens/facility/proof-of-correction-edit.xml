@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.company.facilitymanagement.web.screens.facility">
+    <data>
+        <instance id="proofOfCorrectionDc"
+                  class="com.company.facilitymanagement.entity.FacilityManagement.ProofOfCorrection"
+                  view="proofOfCorrection-view">
+            <loader/>
+        </instance>
+        <collection id="pocTypedc"
+                    class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue" view="_minimal">
+            <loader id="pocTypels">
+                <query>
+                    <![CDATA[select e from facilitymanagement_ReferenceValue e  where e.referenceCode.code='pocType']]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="proofOfCorrectionDc">
+            <column width="250px">
+                <lookupField id="proofTypeField" optionsContainer="pocTypedc" property="proofType">
+
+                </lookupField>
+                <dateField id="providedDateField" property="providedDate"/>
+                <pickerField id="deficiencyField" property="deficiency">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -49,7 +49,7 @@ public class VisitServiceBean implements VisitService {
             ReferenceValue value = query.getFirstResult();
             visit.setTypeOfVisit(value);
             TypedQuery<ReferenceValue> query1 = getReferenceValue("visitStatus",1);
-            ReferenceValue value1 = query.getFirstResult();
+            ReferenceValue value1 = query1.getFirstResult();
             visit.setStatus(value1);
             persistence.getEntityManager().persist(visit);
             tx.commit();

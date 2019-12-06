@@ -52,5 +52,11 @@
         <entity class="com.company.facilitymanagement.entity.FacilityManagement.Visit">
             <include re=".*"/>
         </entity>
+        <entity class="com.company.facilitymanagement.entity.FacilityManagement.Deficiency">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.company.facilitymanagement.entity.FacilityManagement.ProofOfCorrection">
+            <include re=".*"/>
+        </entity>
     </entities>
 </fts-config>

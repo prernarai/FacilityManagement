@@ -107,34 +107,47 @@
                     </cssLayout>
                     </cssLayout>
                     <label stylename="spacer" width="100%" height="10px"></label>
-                    <label id="label2" stylename="label-as-header" align="TOP_CENTER" value="My visits, tasks and appointments"/>
+                    <label id="label2" stylename="label-as-header" align="TOP_CENTER" value="My tasks,visits and appointments"/>
                     <cssLayout stylename="custom-box-for-datagrid" id="searchResult" height="100%" width="100%">
 
                         <cssLayout width="100%" height="95%" stylename="item-1">
                         <dataGrid id="dataGrid"   width="98%" height="45%"
-                                 dataContainer="taskDatasDc">
+                                  selectionMode ="MULTI"      dataContainer="taskDatasDc">
                             <actions>
                                 <action id="createAppointment" caption="create appointment"
                                         icon="CALENDAR" invoke="createAppointment"/>
+                                <action id="edit" type="edit"/>
+                                <action id="startInterview" caption="Start Interview"
+                                        icon="CALENDAR" invoke="startInterview"/>
+                                <action id="refreshTask"
+                                        icon="REFRESH" invoke="refreshTask"/>
+
                             </actions>
                             <columns>
                                 <column property="name" caption="Task"/>
                                 <column property="forComplaint.businessKey" caption="Complaint"/>
                                 <column property="dueDate" caption="Due on"/>
                                 <column property="assigne.name" caption="Assignee"/>
-
+                                <column property="status" caption="Status"/>
 
                             </columns>
                             <buttonsPanel>
+                                <button id="editBtn1" action="dataGrid.edit"/>
+                                <button id="startInterviewBtn" action="dataGrid.startInterview"/>
                                 <button id="creatAppointmentbtn" action="dataGrid.createAppointment"/>
+                                <button id="refreshTask" action="dataGrid.refreshTask" icon="REFRESH"></button>
                             </buttonsPanel>
                         </dataGrid>
                             <dataGrid id="dataGrid2"  width="98%" height="50%" css="margin-top:10px"
-                                      dataContainer="visitDc">
+                                  selectionMode="MULTI_CHECK"    dataContainer="visitDc">
                             <actions>
                                 <action id="edit" type="edit"/>
                                 <action id="createAppointment" caption="create appointment"
                                         icon="CALENDAR" invoke="createAppointment"/>
+                                <action id="refreshVisit"
+                                        icon="REFRESH" invoke="refreshVisit"/>
+                                <action id="submitItinerary" caption="submit Itinerary"
+                                        icon="CHECK" invoke="submitItinerary" />
                             </actions>
 
                             <columns>
@@ -150,8 +163,8 @@
 
                                     <button id="editBtn" action="dataGrid2.edit"/>
                                     <button id="createAppointmentbtn1" action="dataGrid2.createAppointment"/>
-                                    <button id="refreshVisit" action="refreshVisit" icon="REFRESH"></button>
-
+                                    <button id="refreshVisit" action="dataGrid2.refreshVisit" icon="REFRESH"></button>
+                                    <button id="submitItinerary" action="dataGrid2.submitItinerary" icon="CHECK"></button>
                                 </buttonsPanel>
                             </dataGrid>
                         </cssLayout>
@@ -159,7 +172,6 @@
 
                         <buttonsPanel>
                             <button id="refreshAppointment" action="refreshAppointment" icon="REFRESH"></button>
-
                         </buttonsPanel>
 
                         <calendar id="calendar" width="99%" captionProperty="topic" dataContainer="appointmentsDc"

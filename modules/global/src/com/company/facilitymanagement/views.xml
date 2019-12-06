@@ -17,12 +17,14 @@
         <property name="state" view="_minimal">
             <property name="value"/>
         </property>
+        <property name="complaintList" view="_local"/>
         <property name="clients" view="_local"/>
         <property name="licenseStatus" view="_local"/>
         <property name="visitList" fetch="JOIN" view="_local">
             <property name="typeOfVisit"/>
             <property name="status" fetch="JOIN" view="_local"/>
         </property>
+        <property name="lsitOfDeficiency" fetch="JOIN" view="deficiency-view"/>
     </view>
     <view entity="facilitymanagement_Complaint" name="complaint-detail-view" extends="_local">
         <property name="isAbuseReportRequired" view="_minimal"/>
@@ -34,11 +36,12 @@
             <property name="value"/>
         </property>
         <property name="allegations" fetch="JOIN" view="allegation-view"/>
-        <property name="facility" view="_minimal">
-            <property name="businessKey"/>
-        </property>
+        <property name="facility" view="_minimal"/>
         <property name="reportingParty" view="_minimal">
             <property name="lastName"/>
+        </property>
+        <property name="currentStatus" view="_minimal">
+            <property name="value"/>
         </property>
     </view>
     <view entity="facilitymanagement_Victim" name="victim-view" extends="_local">
@@ -85,8 +88,13 @@
         <property name="allegations" fetch="JOIN" view="allegation-view"/>
         <property name="facility" view="facility-view"/>
         <property name="reportingParty" view="complainant-view"/>
+        <property name="priority" view="_local"/>
+        <property name="currentStatus" view="_local"/>
     </view>
-    <view entity="facilitymanagement_Complaint" name="complaint-view" extends="_local"/>
+    <view entity="facilitymanagement_Complaint" name="complaint-view" extends="_local">
+        <property name="priority" view="_local"/>
+        <property name="currentStatus" view="_local"/>
+    </view>
     <view entity="facilitymanagement_Appointment" name="appointment-view" extends="_local">
         <property name="whoIsWorker" view="_minimal"/>
         <property name="visitingTo" view="facility-view"/>
@@ -110,5 +118,18 @@
     <view entity="facilitymanagement_CientWithFacility" name="cientWithFacility-view" extends="_local">
         <property name="facility" view="_minimal"/>
         <property name="client" fetch="JOIN" view="client-view"/>
+    </view>
+    <view entity="facilitymanagement_ProofOfCorrection" name="proofOfCorrection-view" extends="_local">
+        <property name="proofType" view="_minimal">
+            <property name="value"/>
+        </property>
+        <property name="deficiency" view="_minimal"/>
+    </view>
+    <view entity="facilitymanagement_Deficiency" name="deficiency-view" extends="_local">
+        <property name="sectionNumber" view="_local"/>
+        <property name="forFacility" view="_local"/>
+        <property name="visitIdentified" view="_local"/>
+        <property name="pocList" view="proofOfCorrection-view"/>
+        <property name="deficiencyStatus" view="_local"/>
     </view>
 </views>

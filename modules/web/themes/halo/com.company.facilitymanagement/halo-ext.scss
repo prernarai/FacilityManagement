@@ -10,7 +10,7 @@
     transition: 0.3s;
 
     border-radius: 5px; /* 5px rounded corners */
-    border:1px solid lightgrey;
+    border:1px solid $v-focus-color;
     background-color:White;
     text-align:center;
     display:table-cell;
@@ -286,7 +286,10 @@
    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
                 transition: 0.3s;
                 border-radius: 10px;
-                border:1px solid lightgrey;
+               border:1px solid $v-focus-color;
+  }
+  .choiceItem:hover{
+  border:2px solid green;
   }
 /*---task list and calendar*/
 .custom-box-for-datagrid {
@@ -326,7 +329,7 @@
 /* facility edit page*/
 .ContentGridForFacility{
   display: grid;
-  grid-template-rows:14% 28% 33% 25%;
+  grid-template-rows:14% 25% 36% 25%;
   grid-gap:10px;
   grid-template-areas:"header header"
                       "content content"
@@ -401,7 +404,32 @@
                 border-radius: 10px;
                 border:1px solid lightgrey;*/
                 background-color:white;
-               border: 1px solid lightgrey;
+               border: 1px solid $v-focus-color;;
 
 }
+  .labelStyle{
+    font-weight:bold;font-size:15px;
+    }
+/* for dashboards*/
+ .choicesDashboardGrid
+  {
+   display: grid;
+   grid-template-columns: 25% 25% 25% 25% 25%;
+   grid-gap:20px;
+
+  }
+  .choiceDashboardItem
+  {
+  padding: 5px;
+  border:1px solid red;
+   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                border-radius: 10px;
+                border:1px solid $v-focus-color;
+  }
+ .choiceDashboardItem:hover {
+     border:1px solid green;
+    }
+
+
 }

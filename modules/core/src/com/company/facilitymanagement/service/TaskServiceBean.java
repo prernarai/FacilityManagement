@@ -10,6 +10,7 @@ import com.haulmont.cuba.core.Transaction;
 import com.haulmont.cuba.core.TypedQuery;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.Metadata;
+import com.haulmont.cuba.core.global.View;
 import com.haulmont.cuba.security.entity.User;
 import org.apache.pdfbox.jbig2.util.log.Logger;
 import org.apache.pdfbox.jbig2.util.log.LoggerFactory;
@@ -50,6 +51,9 @@ public class TaskServiceBean implements TaskService {
             log.info("in create task call function");
             create2HourCall(assignedTo, complaint);
        }
+        if (taskType.equalsIgnoreCase("approveItinerary")) {
+            createApproveItinerary();
+        }
     }
 
     private void create2HourCall(User assignedTo, Complaint complaint) {
@@ -70,7 +74,29 @@ public class TaskServiceBean implements TaskService {
         }
 
     }
+    private void createApproveItinerary() {
+        Task newTask = metadata.create(Task.class);
+        User assignedTo= dataManager.load(User.class)
+                .query("select u from sec$User u where u.lastName=:lastName ")
+                .parameter("lastName", "jane")
+                .view(View.MINIMAL)
+                .one();
+        newTask.setDescription("Approve Itinerary");
+        newTask.setName("Approve Itinerary");
+        newTask.setAssigne(assignedTo);
+        newTask.setDueDate(new Date());
 
+
+        try (Transaction tx = persistence.createTransaction()) {
+            TypedQuery<ReferenceValue> query = getReferenceValueTypedQuery("taskStatus");
+            ReferenceValue value = query.getFirstResult();
+            newTask.setStatus(value);
+            persistence.getEntityManager().persist(newTask);
+            tx.commit();
+        }
+
+    }
+///this needs to move out as its own service
     private TypedQuery<ReferenceValue> getReferenceValueTypedQuery(String ReferenceCode) {
         TypedQuery<ReferenceValue> query = persistence.getEntityManager().createQuery(
                 "select c from facilitymanagement_ReferenceValue c where " +

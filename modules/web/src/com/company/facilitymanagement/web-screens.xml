@@ -33,5 +33,11 @@
             template="com/company/facilitymanagement/web/screens/complaint/complaint-edit.xml"/>
     <screen id="facilitymanagement_Allegationitemframe"
             template="com/company/facilitymanagement/web/screens/complaint/AllegationItemFrame.xml"/>
+    <screen id="facilitymanagement_ConductinterviewScreen"
+            template="com/company/facilitymanagement/web/screens/ConductInterview/conductInterview-screen.xml"/>
+    <screen id="facilitymanagement_Interviewstep1Screen"
+            template="com/company/facilitymanagement/web/screens/ConductInterview/InterviewStep1-screen.xml"/>
+    <screen id="facilitymanagement_Interviewstep2Screen"
+            template="com/company/facilitymanagement/web/screens/ConductInterview/InterviewStep2-screen.xml"/>
 
 </screen-config>

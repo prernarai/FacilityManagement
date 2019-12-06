@@ -73,6 +73,8 @@ create table FACILITYMANAGEMENT_COMPLAINT (
     FACILITY_ID varchar(36),
     REPORTING_PARTY_ID bigint,
     PRIORITY_ID integer,
+    CURRENT_STATUS_ID integer,
+    ASSIGNED_TO_ID varchar(36),
     --
     primary key (ID)
 )^
@@ -342,3 +344,45 @@ create table FACILITYMANAGEMENT_TASK (
     primary key (ID)
 )^
 -- end FACILITYMANAGEMENT_TASK
+-- begin FACILITYMANAGEMENT_DEFICIENCY
+create table FACILITYMANAGEMENT_DEFICIENCY (
+    ID varchar(36) not null,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    SECTION_NUMBER_ID integer,
+    COMMENTS varchar(255),
+    POC varchar(255),
+    DUE_DATE date,
+    DATE_CORRECTED date,
+    FOR_FACILITY_ID varchar(36),
+    VISIT_IDENTIFIED_ID varchar(36),
+    VISIT_CORRECTED date,
+    DEFICIENCY_STATUS_ID integer,
+    --
+    primary key (ID)
+)^
+-- end FACILITYMANAGEMENT_DEFICIENCY
+-- begin FACILITYMANAGEMENT_PROOF_OF_CORRECTION
+create table FACILITYMANAGEMENT_PROOF_OF_CORRECTION (
+    ID varchar(36) not null,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    PROOF_TYPE_ID integer,
+    PROVIDED_DATE date,
+    DEFICIENCY_ID varchar(36),
+    --
+    primary key (ID)
+)^
+-- end FACILITYMANAGEMENT_PROOF_OF_CORRECTION

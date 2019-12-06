@@ -44,6 +44,9 @@
                 <vbox stylename="item" width="100%"><label value="Facility Number"></label>
                     <linkButton  width="100%" stylename="borderless" id="facilityNumberLink" invoke="onFacilityLinkClicked"
                                   caption="Facility Number" icon="font-icon:HOME">Facility Number</linkButton></vbox>
+                <vbox stylename="item" width="100%" ><lookupField css="padding:5px;" width="100%" property="currentStatus"
+                                                                caption="Status" datasource="complaintDs"/>
+                </vbox>
                 <vbox stylename="item" width="100%" ><textField css="padding:5px;" width="100%" property="businessKey" caption="Control number" datasource="complaintDs"/>
                 </vbox>
                 <vbox stylename="item" width="100%"><lookupField width="100%" property="sourceOfComplaint" caption="msg://whatWasTheSource"

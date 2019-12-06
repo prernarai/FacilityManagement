@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        xmlns:wizard="http://schemas.diedavids.de/wizard/0.1/ui-component.xsd"
+        class="com.company.facilitymanagement.web.screens.ConductInterview.ConductinterviewScreen"
+        messagesPack="com.company.facilitymanagement.web.screens.ConductInterview"
+        caption="conduct Interview">
+    <dsContext>
+        <datasource id="complaintDs"
+                    class="com.company.facilitymanagement.entity.ComplaintModel.Complaint"
+                    view="complaint-detail-view">
+
+        </datasource>
+        <datasource id="taskDs"
+                    class="com.company.facilitymanagement.entity.ReferenceModel.Task"
+                    view="task-view">
+
+        </datasource>
+        <collectionDatasource id="yesNoDs"
+                              class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='yesNo']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="complaintSourceValuesDs"  class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='complaintSource']]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="reportingPartiesDs"
+                              class="com.company.facilitymanagement.entity.ComplaintModel.Complainant"
+                              view="complainant-view">
+            <query>
+                <![CDATA[select e from facilitymanagement_Complainant e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="interviewType"
+                              class="com.company.facilitymanagement.entity.ReferenceModel.ReferenceValue"
+                              view="_local">
+            <query>
+                <![CDATA[select e from facilitymanagement_ReferenceValue e where e.referenceCode.code='typeOfInterviewer']]>
+            </query>
+        </collectionDatasource>
+        <!-- <datasource id="allegationDs" class="com.company.facilitymanagement.entity.ComplaintModel.Allegation"
+                     view="allegation-view"/>-->
+
+    </dsContext>
+    <dialogMode height="900px"
+                width="1300px"/>
+
+    <layout expand="conductInterview">
+        <wizard:wizard id="conductInterview" height="100%" width="100%">
+
+        <wizard:step id="step1"
+                     icon="font-icon:USER"
+                     caption="Who am I interviewing?"
+                     screen="InterviewStep1-screen" />
+        <wizard:step id="step2"
+                     icon="font-icon:HOME"
+                     caption="Gather details"
+                     screen="InterviewStep2-screen" />
+        </wizard:wizard>
+    </layout>
+</window>

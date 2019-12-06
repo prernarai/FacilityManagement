@@ -2,14 +2,13 @@ package com.company.facilitymanagement.web.screens.FileComplaint;
 
 import com.company.facilitymanagement.entity.ComplaintModel.*;
 import com.company.facilitymanagement.entity.FacilityManagement.Facility;
+import com.company.facilitymanagement.service.ComplaintService;
 import com.company.facilitymanagement.service.TaskService;
 import com.company.facilitymanagement.service.VisitService;
+import com.company.facilitymanagement.web.PresenterEvents.ComplaintCreatedEvent;
 import com.company.facilitymanagement.web.PresenterEvents.UserChoiceSelectedEvent;
 import com.haulmont.addon.bproc.service.BprocRuntimeService;
-import com.haulmont.cuba.core.global.DataManager;
-import com.haulmont.cuba.core.global.Metadata;
-import com.haulmont.cuba.core.global.UserSessionSource;
-import com.haulmont.cuba.core.global.View;
+import com.haulmont.cuba.core.global.*;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.components.AbstractWindow;
 import com.haulmont.cuba.gui.data.Datasource;
@@ -112,36 +111,44 @@ public class FileComplaint extends AbstractWindow {
         return complaint;
 
     }
-
+    @Inject
+    Events events;
     @Override
     public void ready() {
         fileComplaintWizard.addWizardFinishClickListener(event -> {
 
             dsContext.commit();
-
+            ComplaintCreatedEvent complaintCreatedEvent=new ComplaintCreatedEvent(complaintDs.getItem());
+            complaintCreatedEvent.setComplaintId(complaintDs.getItem().getBusinessKey());
 
            // startBusinessProcess(complaintDs.getItem());
             createTasks();
             showNotification("Complaint captured successfully and complaint id is :-" + complaintDs.getItem().getBusinessKey(), NotificationType.TRAY);
             close(COMMIT_ACTION_ID);
+            events.publish(complaintCreatedEvent);
         });
         //fileComplaintWizard.addWizardCancelClickListener(this::);
     }
+
     @Inject
     TaskService taskService;
     @Inject
     private UserSessionSource userSessionSource;
     @Inject
     VisitService visitService;
+    @Inject
+    private ComplaintService complaintService;
+
     private void createTasks() {
         taskService.createTask("2HourCall",
                 userSessionSource.getUserSession().getUser(),complaintDs.getItem());
         visitService.createVisit("typeOfVisit", userSessionSource.getUserSession().getUser(),
                 complaintDs.getItem(),complaintDs.getItem().getFacility());
 
+        //complaintService.setComplaintStatus(complaintDs.getItem(),2);
+        //complaintService.setComplaintPriorty(complaintDs.getItem(),1);
+        //complaintService.setAssignment(complaintDs.getItem(),userSessionSource.getUserSession().getUser());
     }
-
-
     private void startBusinessProcess(Complaint complaint) {
 
         Map<String, Object> processVariables = new HashMap<>();
@@ -158,6 +165,24 @@ public class FileComplaint extends AbstractWindow {
                 "file-a-complaint",
                 processVariables);
     }
+    @EventListener
+    protected void onComplaintCreated(ComplaintCreatedEvent event) {
+        Complaint complaint=dataManager.load(Complaint.class)
+                .query("select u from facilitymanagement_Complaint u " +
+                        "where u.businessKey=:businessKey")
+                .parameter("businessKey",event.getComplaintId())
+                .view(View.LOCAL)
+                .one();
+       // complaintService.setComplaintStatus(complaintDs.getItem(),2);
+       // complaintService.setComplaintPriorty(complaintDs.getItem(),1);
+       // complaintService.setAssignment(complaintDs.getItem(),userSessionSource.getUserSession().getUser());
+    }
+    /*private void sendByEmail() {
+
+        EmailInfo emailInfo = new EmailInfo()
+
+        emailService.sendEmailAsync(emailInfo);
+    }*/
 
 
 }

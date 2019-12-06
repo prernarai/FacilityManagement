@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="com.company.facilitymanagement.web.screens.ConductInterview.Interviewstep1Screen"
+        messagesPack="com.company.facilitymanagement.web.screens.ConductInterview"
+        caption="msg://caption">
+    <dialogMode height="600"
+                width="800"/>
+    <layout >
+        <vbox  >
+        <lookupField  width="100%"
+                     caption="What am I interviewing?" optionsDatasource="interviewType"/>
+        </vbox >
+    </layout>
+</window>
